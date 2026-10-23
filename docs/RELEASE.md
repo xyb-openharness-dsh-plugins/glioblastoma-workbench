@@ -22,3 +22,15 @@ README/许可证/素材来源/运行依赖/更新说明：...
 回滚步骤/数据兼容检查/已知限制：...
 
 工作台市场发布另按 docs/10-MARKET-PUBLISHING.md 执行，附 templates/MARKET-ACCEPTANCE.md 的指定版本手工确认。官方指南复核日期/来源：... 最终安装来源：... 用户确认的项目与执行者：... PR URL/最新提交检查实际执行结果：... 市场目录可见与可安装证据：...。未授权投稿时标不适用，不把 Git push 当市场发布。
+
+## 0.1.0 装机记录（M6 · 2026-10-24）
+
+| 项 | 值 |
+| --- | --- |
+| tgz | `release/xyb-community-glioblastoma-workbench-0.1.0.tgz`（3.6MB/42 文件，sha256 `83bc29e2…f4e546f`） |
+| 安装 | `NODE_OPTIONS= npx --yes pnpm@10.15.0 add -w file:…` → `harness/profiles/web`（+1 包，4.8s） |
+| 依赖声明 | ✅ `package.json` 含 `@xyb-community/glioblastoma-workbench: file:…` |
+| 解包 | ✅ node_modules 内 dsh/lib/public/schema/demo 齐全 |
+| harness.log | ✅ 无 import failed（日志最近一次启动为 10-20，装机后未重启） |
+| state.json added | ⏳ 未出现（需用户在 dsh-desktop 内"添加工作台"；家族统一路径） |
+| **UI 加载/业务验证（V2/V3）** | **未验证**——待用户：重启 dsh-desktop → 工作台列表添加 → 走核心流程（打开/切页/AI 面板/数据落盘/重开资料还在/版本首屏） |

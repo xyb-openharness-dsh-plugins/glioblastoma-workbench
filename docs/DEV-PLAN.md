@@ -11,7 +11,7 @@
 | M3 数据模型 | `schema/0001_initial.sql` + freeze-contract.md（sha256） | 冻结的数据契约 | ✅ 2026-10-24 | **G3 已冻结**（sha256 8b08f68f…，27 表实测） |
 | M4 临床库 | 在线四通道采集 2026 GBM 试验 → manifest/jsonl/sqlite/README + CLINICAL-DATA-2026.md | research/glioblastoma-cancer/ 四件套 | ⏳（采集脚本可与 M1 并行） | — |
 | M5 开发版 | dsh 六步移植 + MinerU 六部件（18 号 v2） + test 三件 + `npm run check` 全绿 + **HVT 交互一致性** | 可运行开发版 | ✅ 2026-10-24（check 8 闸全绿独立复跑、47/47 单测、ui-parity 60/60 逐字符、HVT 30/30+13/13、0002 增量迁移待用户追认） | V1 包级 ✅ |
-| M6 装机 | dsh-desktop pnpm 实装、宿主信号判据、截图归档 docs/release/ | 装机实测记录 | ⏳ | V2 装机 |
+| M6 装机 | dsh-desktop pnpm 实装、宿主信号判据、截图归档 | 装机实测记录 | 🔶 包级已装（依赖/解包/日志 ✅）；UI 加载与业务验证**未验证**（待用户桌面端添加并走流程，见 docs/RELEASE.md） | V2 装机（进行中） |
 | M7 发布 | tag/release、CHANGELOG、经验回流 starter（LESSONS/CHANGELOG 记一条） | v0.1.0 release | ⏳ | V3 业务验证 |
 
 ## 执行纪律
