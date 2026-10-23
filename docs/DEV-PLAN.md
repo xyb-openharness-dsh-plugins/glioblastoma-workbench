@@ -23,4 +23,8 @@
 
 ## 2026-10-24 进展
 
-- M0 完成：issue #12 认领、私有仓建立、starter init（139 文件、staticPass true、0.1.0）、文档体系 8 件、DEV-REQUIREMENTS-2026-10-24.md 落地。
+- M0 完成：issue #12 认领（claimed 标签+指派）、私有仓建立、starter init（139 文件、staticPass true、0.1.0）、文档体系 8 件、DEV-REQUIREMENTS-2026-10-24.md。
+- M1 完成（待 G1 签认）：三路调研（医学 24 源含卫健委 2022 PDF 核数 / 用户研究 18 假设 0 访谈如实 / 家族结构实测）、USER-RESEARCH / SCENARIOS（S01–S17）/ PATIENT-FLOW（三流反推 10 线 27 页签）/ DIFF-MATRIX 全量（与 lymphoma 一级重名率 10%）/ SPEC v0.1。
+- M4 v1 完成：108 条（CDE 84 + CTV 24）四类终态如实入库；chictr_online/ictrp 两轮 FAILED（未查过，不计覆盖），补采待后续会话；demo-data.js 已生成。
+- M2 进行中：demo 构建器 ✅（双主体两档案×6 个月，电场 45 天带，三态分子 8 项）；prototypes/v0.2 四件套构建中（PROTOTYPE-BRIEF 为契约）。
+- 两个关键研究发现已入设计：代记双源标签（author_role，ICC 证据）；ACP 从新诊断期即启用（84.1% 家属代决证据）。
