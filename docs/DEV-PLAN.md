@@ -6,9 +6,9 @@
 | 里程碑 | 内容 | 交付物 | 状态 | 闸口 |
 | --- | --- | --- | --- | --- |
 | M0 骨架 | 认领、建仓、init、文档体系、DEV-REQUIREMENTS | 本文件 + 强约束清单 | ✅ 2026-10-24 | — |
-| M1 调研SPEC | 十轴调研、USER-RESEARCH、SCENARIOS、PATIENT-FLOW、DIFF-MATRIX、SPEC/四核心模块 | docs/ 研究套装 | ⏳ | **G1 业务流程签认** |
-| M2 原型 | demo 数据、prototypes/v0.2 四件套、schema 草案（`schema/draft/` 不冻结） | 可点 HTML demo | ⏳ | **G2 HTML 签认** |
-| M3 数据模型 | `schema/0001_initial.sql` + freeze-contract.md（sha256） | 冻结的数据契约 | ⏳ | **G3 数据契约签认** |
+| M1 调研SPEC | 十轴调研、USER-RESEARCH、SCENARIOS、PATIENT-FLOW、DIFF-MATRIX、SPEC/四核心模块 | docs/ 研究套装 | ✅ 2026-10-24 | **G1 已签**（samqin123） |
+| M2 原型 | demo 数据、prototypes/v0.2 四件套、schema 草案（`schema/draft/` 不冻结） | 可点 HTML demo | ✅ 2026-10-24 | **G2 已签**（samqin123） |
+| M3 数据模型 | `schema/0001_initial.sql` + freeze-contract.md（sha256） | 冻结的数据契约 | ✅ 2026-10-24 | **G3 已冻结**（sha256 8b08f68f…，27 表实测） |
 | M4 临床库 | 在线四通道采集 2026 GBM 试验 → manifest/jsonl/sqlite/README + CLINICAL-DATA-2026.md | research/glioblastoma-cancer/ 四件套 | ⏳（采集脚本可与 M1 并行） | — |
 | M5 开发版 | dsh 六步移植 + MinerU 六部件（18 号 v2） + test 三件 + `npm run check` 全绿 + **HVT 交互一致性**：开发页面与 INTERACTION-DESIGN 路径逐条断言（每 (view,sub) 被路径覆盖、13 条路径可从看板走通、CRUD 通道一致） | 可运行开发版 | ⏳ | V1 包级 |
 | M6 装机 | dsh-desktop pnpm 实装、宿主信号判据、截图归档 docs/release/ | 装机实测记录 | ⏳ | V2 装机 |

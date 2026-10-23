@@ -1,0 +1,24 @@
+# Schema 冻结合同（G3）· 2026-10-24
+
+| 项 | 值 |
+| --- | --- |
+| 文件 | `schema/0001_initial.sql` |
+| sha256 | `8b08f68f0029b48cc06afb11c3c06e3f9c65b4cae2c4fab7e6761b04ac514ac0` |
+| 表数 | 27（档案 2 + 指标 3 + 通用 7 + GBM 专属 12 + 导入 3） |
+| 冻结日 | 2026-10-24（用户 G1/G2 确认后执行；G3 签认人 samqin123） |
+| 验证 | 内存库实测 27 表全建；判读列断言 PASS（无 is_conclusion/is_progression 类列） |
+
+## 内容边界
+
+档案级：workspace / profile（双主体 primary_role + cognitive_flag）。
+指标：metric_def（is_numeric=0 不进趋势）/ metric_point（value_num+value_text 双轨）/ lab_result（ref_range 原文）。
+通用：adverse_event / symptom_log（author_role 双源）/ nutrition_log / question（fact/view + from_scenario）/ task / document（三态，"解析中"不落库）/ saved_trial。
+GBM 专属：molecular_marker(+title)（三态）/ surgery_record / onco_cycle / ttfields_daily / mri_followup（并列事实）/ steroid_dose / seizure_event / aed_medication / viewpoint（visibility 数据结构属性）/ decision_checklist / cog_assessment。
+导入：import_file（in_use）/ parse_job（重试留痕）/ candidate（逐项核对）。
+
+## 冻结规则
+
+1. 本文件 sha256 与 `schema/0001_initial.sql` 实算一致才可继续；不一致即冻结破坏，停线排查。
+2. 结构变更**只能新增** `000N_*.sql`（ALTER 追加 / 新表），不修改 0001，不写 UPDATE/DELETE 迁移。
+3. 分节补列（如 `\*_title`）走 ALTER 追加（D5 教训）。
+4. 解冻（极端情况）需用户书面确认并在本文件追加解冻记录。

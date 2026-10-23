@@ -1,6 +1,6 @@
 # HTML 交互原型确认记录（PROTOTYPE-REVIEW）· v0.2
 
-状态：**已制作、已自验、待用户确认（G2 未签）**。未签认前不展开业务实现。
+状态：**已确认（G2 已签，2026-10-24）**。签认人 samqin123（用户，会话原话"确认"）；允许实施范围：全部 30 (view,sub) + 设置 3 页签。旧版（27 页签）冻结于 git 6721109。
 
 - HTML 实际路径/版本/SHA-256：`prototypes/v0.2/`，git `66f18de+`（2026-10-24 评审修订版），app.js `901c7cb5…292dc5f9a07c`（133,191 字节）
 - 当前 SPEC/场景/数据模型版本：SPEC v0.1 + SCENARIOS S01–S17（含 S13b）+ PATIENT-FLOW（10 线 29 页签，评审修订后）+ INTERACTION-DESIGN v1 + schema/draft/0001
