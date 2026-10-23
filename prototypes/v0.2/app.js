@@ -48,11 +48,11 @@ const SUBPAGES = {
   chemo: [['stupp', 'Stupp 日程'], ['cycles', 'TMZ 周期'], ['changes', '方案与变更']],
   ttf: [['wear', '佩戴与时长'], ['arrays', '贴片与头皮'], ['usage', '设备使用率']],
   mri: [['parallel', 'MRI 并列'], ['questions', '问题清单'], ['archive', '影像档案']],
-  lab: [['blood', '血象'], ['steroid', '激素剂量'], ['metabolic', '肝肾与电解质']],
+  lab: [['blood', '血象'], ['steroid', '激素剂量'], ['metabolic', '肝肾与电解质'], ['lab-panorama', '病情一图']],
   symptom: [['seizure', '癫痫事件'], ['edema', '脑水肿与症状'], ['risks', '感染与血栓']],
   nutrition: [['intake', '进食与体重'], ['concerns', '当下困扰']],
   care: [['feelings', '当下感受'], ['cognition', '认知与人格'], ['decisions', '照护决策与 ACP']],
-  followup: [['schedule', '复查节奏'], ['prepare', '就诊准备'], ['trials', '试验线索'], ['enrolled', '已收藏']]
+  followup: [['schedule', '复查节奏'], ['prepare', '就诊准备'], ['trials', '试验线索'], ['enrolled', '已收藏'], ['followup-archive', '资料档案']]
 };
 const SUBTITLES = {
   dash: '把今天能做的一件事放在最前面；事实、原话和想问的事分开摆。',
@@ -60,11 +60,11 @@ const SUBTITLES = {
   chemo: '28 天周期里今天是第几天、该不该吃，计划与实际分开留痕。',
   ttf: '戴了多久、贴片与头皮的情况，逐日记下来；目标由治疗团队解释。',
   mri: '历次报告并排，只摆事实与原话，不做判读。',
-  lab: '数值照抄报告，分级只对照国际标准区间；对照不是诊断。',
+  lab: '病情一图把治疗与指标放回同一段时间；数值照抄报告，分级只对照国际标准区间。',
   symptom: '发作、水肿与风险各走各的轨道；记录不分因果。',
   nutrition: '体重与进食只记事实；激素期与疾病期的语境分开说明。',
   care: '感受、认知与决策都有位置；私密内容默认不出现在导出。',
-  followup: '复查节奏、就诊准备与试验线索分开放；线索不是推荐。'
+  followup: '复查节奏、就诊准备、试验线索与资料档案分开放；线索不是推荐。'
 };
 
 /* ---------------- 指标目录（与一图秀同一来源） ---------------- */
@@ -486,7 +486,7 @@ function pageDash() {
       <div class="chg"><span>最近激素调整</span><b>${dexLast ? `${dexLast.kind === 'INCREASE' ? '加量至' : dexLast.kind === 'DECREASE' ? '减量至' : dexLast.mg === 0 ? '停用' : '调整至'} ${dexLast.mg}mg/日 · ${shortDate(dexLast.date)}` : '—'}</b><p>${esc(dexLast ? dexLast.note : '')}</p></div>
       <div class="actions">${go('看 MRI 并列', 'mri', 'parallel', 'soft')}${go('看激素阶梯', 'lab', 'steroid', 'soft')}</div>
     </div>
-    ${section('接下来 · 4 个指标卡', '点数值卡翻到背面看参考区间与最近 5 次；分类记录（KPS）不翻不连线。', go('去一图秀', 'lab', 'blood'))}
+    ${section('接下来 · 4 个指标卡', '点数值卡翻到背面看参考区间与最近 5 次；分类记录（KPS）不翻不连线。', go('看病情一图秀', 'lab', 'lab-panorama', 'primary'))}
     <div class="dash-cols">
       <div class="metric-grid">${recentCards.map(metricCard).join('')}${metricCard('KPS')}</div>
       <div class="stack">
@@ -543,7 +543,7 @@ function pageSurgery() {
       </div>
       <div class="card"><div class="card-head"><div><h3>手术时间会出现在</h3></div></div>
         <div class="flag-list"><div>一图秀：菱形节点 + 竖虚线（去「指标与用药 · 血象」看）</div><div>放化疗日历：同步期的起点参考</div></div>
-        <div class="actions" style="margin-top:12px">${go('去一图秀看节点', 'lab', 'blood', 'soft')}</div>
+        <div class="actions" style="margin-top:12px">${go('去病情一图看节点', 'lab', 'lab-panorama', 'soft')}</div>
       </div>
     </div>`;
 }
@@ -871,11 +871,19 @@ function chartBlock() {
     </div>
   </div>`;
 }
+function pageLabPanorama() {
+  /* 16 号合同的整页视图（P0-②：独立「病情一图」页签，不缩嵌） */
+  const groups = CAT_ORDER.map((cat) => ({ cat, codes: Object.keys(CATALOG).filter((c) => CATALOG[c].cat === cat) }));
+  return `${pageHeadFor('治疗、检验与功能评分放回同一段时间里，看见变化发生在哪一步；每条线独立归一化，互不可比。')}
+    <div class="notice plain">手术（菱形+竖虚线）、放疗与 TMZ 周期（28 天条，D1–5 深色标记）、电场佩戴（周聚合带）分层在独立泳道，不压曲线；KPS 是分类序列，<b>只画节点不连线</b>；悬停看数值，点击固定详情。</div>
+    ${chartBlock()}
+    ${section('指标卡片', '与左侧指标目录同一来源（组名/顺序/项数一致）；点卡片翻到背面看区间与最近 5 次。')}
+    ${groups.map((g) => `<div class="metric-group"><div class="metric-group-head"><h3>${esc(g.cat)}</h3><span>${g.codes.length} 项</span></div><div class="metric-grid">${g.codes.map(metricCard).join('')}</div></div>`).join('')}
+    <p class="small-note">私密内容不进本图；图的口径见左下「口径」说明。</p>`;
+}
 function pageBlood() {
   const p = profile();
-  const m = mem();
-  return `${pageHeadFor('血象四项（WBC/ANC/PLT/HGB）：数值照抄报告，分级只对照 CTCAE v5.0 客观区间。')}
-    ${chartBlock()}
+  return `${pageHeadFor('血象四项（WBC/ANC/PLT/HGB）：数值照抄报告，分级只对照 CTCAE v5.0 客观区间；多指标趋势在「病情一图」。', go('看病情一图', 'lab', 'lab-panorama', 'soft'))}
     ${section('血象卡 · 3D 翻转看区间', '有 CTCAE 对照的四项；无记录的照常列出，不编分级。')}
     <div class="metric-grid">${['WBC', 'ANC', 'PLT', 'HGB'].map(metricCard).join('')}</div>
     <div class="notice" style="margin-top:14px"><b>对照不是诊断。</b>徽章只表示"这个数值落在 CTCAE v5.0 的哪一级区间"，是否处理、要不要调整用药由治疗团队判断；ANC/PLT/HGB 本档案暂无记录时不显示分级。</div>
@@ -1199,6 +1207,51 @@ function pageTrials() {
     </div>
     <p class="small-note">数据截止 ${esc(DATA.meta.today || TODAY)}；每次采集条数与校验值写入 manifest（见 设置 · 临床数据包）。</p>`;
 }
+function pageFollowupArchive() {
+  /* P0-①：S13「资料档案」页签——文档三态列表 + 导入 PDF（演示）+ 候选核对静态示意 */
+  const p = profile();
+  const ST = { done: ['已入事实', 'green'], review: ['待核对', 'yellow'], parse: ['待解析', 'dashed'] };
+  const docs = [
+    { name: `病理报告_${p.id === 'demo2' ? '2025-04' : '2026-05'}.pdf`, imp: p.id === 'demo2' ? '2025-04-05' : '2026-05-08', st: 'done' },
+    ...p.mri.map((x, i) => ({ name: `MRI 报告_${x.date}.pdf`, imp: x.date < '2026-09' ? x.date : (p.id === 'demo1' ? '2026-09-26' : '2026-09-15'), st: i === p.mri.length - 1 ? 'review' : 'done' })),
+    { name: '化验单_2026-10-12.jpg', imp: p.id === 'demo1' ? '2026-10-13' : '2026-10-10', st: 'parse' }
+  ];
+  return `${pageHeadFor('文档按 待解析 → 待核对 → 已入事实 三态流转；解析候选永不直接入库，逐项核对后才进事实层。', btn('导入 PDF', 'import-pdf', 'primary'))}
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-head"><div><h3>文档列表</h3><p>${docs.length} 份 · 原件只存本机资料目录（见 设置 · 工作区）</p></div>${pill(`${docs.filter((d) => d.st === 'done').length} 份已入事实`, 'green')}</div>
+      <div class="table-wrap"><table class="cycle-table"><thead><tr><th>文件名</th><th>导入日期</th><th>状态</th><th>说明</th></tr></thead><tbody>
+        ${docs.map((d) => `<tr><td><b>${esc(d.name)}</b></td><td class="num">${esc(d.imp)}</td><td>${pill(ST[d.st][0], ST[d.st][1])}</td><td class="muted">${d.st === 'done' ? '关键字段已核对并入事实层' : d.st === 'review' ? '解析完成，等待逐项核对' : '尚未解析（未配置 Token 时 TXT/MD/CSV 仍可本机解析）'}</td></tr>`).join('')}
+      </tbody></table></div>
+      <p class="small-note">更正=登记新版本；界面不出现"不可恢复"式表述，旧记录始终保留。</p>
+    </div>
+    <div class="grid two">
+      <div>
+        ${section('候选核对（静态示意）', '一切解析/AI 产出都是候选；每项都可以"不对，改一下"。')}
+        <div class="agent-cand" style="border-color:#e0d8c9">
+          <b>解析候选 · 来自 化验单_2026-10-12.jpg</b>
+          <p class="cand-title">血常规字段候选</p>
+          <ul>
+            <li><span>WBC</span><b>3.8 10⁹/L</b></li>
+            <li><span>采样日期</span><b>2026-10-12</b></li>
+            <li><span>来源页</span><b>报告第 1 页</b></li>
+          </ul>
+          <small>逐项核对后才入事实层；拒收无副作用</small>
+          <div class="actions">
+            <button class="primary" data-action="cand-ok">确认入事实层</button>
+            <button class="soft" data-action="cand-fix">不对，改一下</button>
+            <button class="soft" data-action="cand-reject">不用这条</button>
+          </div>
+        </div>
+      </div>
+      <div class="card"><div class="card-head"><div><h3>三态怎么走</h3></div></div>
+        <div class="milestone"><span class="dot"></span><div><b>待解析</b><p>导入后未解析；TXT/MD/CSV 不需 Token 也能本机解析</p></div>${pill('1', 'dashed')}</div>
+        <div class="milestone"><span class="dot"></span><div><b>待核对</b><p>解析出候选字段，等待本人逐项确认</p></div>${pill('1', 'yellow')}</div>
+        <div class="milestone on"><span class="dot"></span><div><b>已入事实</b><p>核对通过的候选进入事实层，一图秀/卡片/导出同步可用</p></div>${pill(String(docs.filter((d) => d.st === 'done').length), 'green')}</div>
+        <p class="small-note">解析失败时原件保留，可重试；云端解析（MinerU）需在 设置 · 文档解析 配置 Token。</p>
+        <div class="actions" style="margin-top:12px">${btn('打开解析设置', 'settings', 'soft', 'data-tab="parse"')}</div>
+      </div>
+    </div>`;
+}
 function pageEnrolled() {
   const p = profile();
   const m = mem();
@@ -1218,11 +1271,11 @@ const RENDERERS = {
   chemo: () => { const k = state.sub.chemo || 'stupp'; return k === 'cycles' ? pageCycles() : k === 'changes' ? pageChanges() : pageStupp(); },
   ttf: () => { const k = state.sub.ttf || 'wear'; return k === 'arrays' ? pageArrays() : k === 'usage' ? pageUsage() : pageWear(); },
   mri: () => { const k = state.sub.mri || 'parallel'; return k === 'questions' ? pageMriQuestions() : k === 'archive' ? pageMriArchive() : pageMriParallel(); },
-  lab: () => { const k = state.sub.lab || 'blood'; return k === 'steroid' ? pageSteroid() : k === 'metabolic' ? pageMetabolic() : pageBlood(); },
+  lab: () => { const k = state.sub.lab || 'blood'; return k === 'lab-panorama' ? pageLabPanorama() : k === 'steroid' ? pageSteroid() : k === 'metabolic' ? pageMetabolic() : pageBlood(); },
   symptom: () => { const k = state.sub.symptom || 'seizure'; return k === 'edema' ? pageEdema() : k === 'risks' ? pageRisks() : pageSeizure(); },
   nutrition: () => { const k = state.sub.nutrition || 'intake'; return k === 'concerns' ? pageConcerns() : pageIntake(); },
   care: () => { const k = state.sub.care || 'feelings'; return k === 'cognition' ? pageCognition() : k === 'decisions' ? pageDecisions() : pageFeelings(); },
-  followup: () => { const k = state.sub.followup || 'schedule'; return k === 'prepare' ? pagePrepare() : k === 'trials' ? pageTrials() : k === 'enrolled' ? pageEnrolled() : pageSchedule(); }
+  followup: () => { const k = state.sub.followup || 'schedule'; return k === 'prepare' ? pagePrepare() : k === 'trials' ? pageTrials() : k === 'enrolled' ? pageEnrolled() : k === 'followup-archive' ? pageFollowupArchive() : pageSchedule(); }
 };
 function render() {
   const page = RENDERERS[state.page] || pageDash;
@@ -1372,7 +1425,8 @@ function openHelp() {
       <div>看板：双主体 8 入口（本人 4 + 照护者 4）</div>
       <div>右上「AI 对话」：开/收起面板，拖动或方向键调宽（25%–45%）</div>
       <div>每页「AI 协助示例」：把预写提示词填入面板输入框，不自动发送</div>
-      <div>「指标与用药 · 血象」顶部是一图秀：选指标（≤4）、缩放、点击数据点固定详情</div>
+      <div>「指标与用药 · 病情一图」是多指标一图秀：选指标（≤4）、缩放、点击数据点固定详情</div>
+      <div>「复诊与试验 · 资料档案」看文档三态（待解析/待核对/已入事实）与候选核对示意</div>
       <div>指标卡点击翻面看参考区间；KPS 是分类卡，不翻不连线</div>
       <div>「就诊准备」可预览导出；私密记录自动过滤</div>
       <div>页面 hash 可分享，例如 <code>#lab/steroid</code></div>
@@ -1470,6 +1524,7 @@ const ACTIONS = {
   'cand-ok'() { toast('演示：核对通过后进入事实层（原型仅示意）', { back: true }); },
   'cand-fix'() { toast('演示：进入逐项修改（每项都可以改）'); },
   'cand-reject'() { state.agent.draft = null; renderAgent(); toast('已拒收这条候选（无副作用）'); },
+  'import-pdf'() { toast('解析能力在开发版提供（MinerU）'); },
   profiles() { openProfiles(); },
   settings(el) { openSettings(el && el.dataset.tab); },
   'open-store'() { openSettings('ws'); },
