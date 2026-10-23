@@ -1,0 +1,18 @@
+{
+  "packageName": "@xyb-community/glioblastoma-workbench",
+  "title": "胶质母细胞瘤患者工作台",
+  "repository": "https://github.com/xyb-openharness-dsh-plugins/glioblastoma-workbench",
+  "description": "面向胶质母细胞瘤患者与照护者的本机病程资料、分子档案、治疗历程、指标趋势与医患沟通工作台设计项目",
+  "slug": "glioblastoma-workbench",
+  "layoutMode": "business-first",
+  "businessWidth": 0.65,
+  "targetUsers": "胶质母细胞瘤（GBM，含高级别胶质瘤）患者与照护者家属双主体；覆盖新诊断（手术/Stupp 同步放化疗/电场治疗）、随访（MRI 与假性进展困惑）、复发与照护决策全程；支持代记与私密内容分级",
+  "scenario": "患者与照护者整理手术记录、病理与分子检测（IDH1/2、MGMT 甲基化、1p/19q）、MRI 随访报告、放化疗与 TMZ 周期、电场治疗佩戴、血象、激素与癫痫发作材料，追踪治疗与不良反应，准备复诊问题并回顾医生确认后的记录",
+  "coreFlow": [
+    "选择本地资料目录并导入或登记手术、病理分子、影像、治疗事件与化验材料",
+    "核对分子档案（IDH/MGMT/1p19q，未检测不等于阴性）、TMZ 周期、电场佩戴时长、KPS 与血象等记录",
+    "查看时间轴与趋势，标记症状/癫痫发作/激素调整与待办，生成复诊摘要与问题清单",
+    "照护者以代记身份记录认知与照护决策线索，私密内容分级管理，并把明确任务交给 Desktop 原生 Agent 会话"
+  ],
+  "completion": "患者与照护者确认的资料和治疗时间轴、可追溯的指标趋势、症状与发作记录、复诊问题摘要均保存在明确选择的本机资料目录中；私密内容按 visibility 分级且三处出口过滤"
+}

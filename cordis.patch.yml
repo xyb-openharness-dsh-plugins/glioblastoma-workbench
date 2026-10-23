@@ -1,0 +1,3 @@
+- insert:
+    - id: glioblastoma-workbench-main
+      name: "@xyb-community/glioblastoma-workbench"
