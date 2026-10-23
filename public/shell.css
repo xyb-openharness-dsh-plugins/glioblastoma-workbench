@@ -1,0 +1,25 @@
+/* shell.css —— 开发版外壳补充（M5）。
+   约定：style.css 与 prototypes/v0.2/style.css 逐字节一致（ui-parity 只允许字号差异 ≤3 处，
+   当前 0 处）；一切开发版新增样式只进本文件，不回写原型。 */
+
+/* 宿主 customFrame 下的窗口按钮避让（macOS 左上角红绿灯）；独立运行时变量为 0，无影响 */
+.wb-shell-topbar {
+  padding-inline-start: var(--dsh-frame-leading-clearance, 0px);
+}
+
+/* AI 五态按钮：正在连接 / 暂不可用 两态的原型没有，样式补在这（不占 style.css 名额） */
+#agent-toggle[data-agent-state="connecting"] { color: var(--muted); border-style: dashed; }
+#agent-toggle[data-agent-state="unavailable"] { color: var(--muted); border-color: var(--line); background: #f6f8fa; cursor: not-allowed; }
+#agent-toggle[data-agent-state="unavailable"]:hover { background: #f6f8fa; border-color: var(--line); }
+
+/* 启动异步化：首屏引导态（数据到位后由 app.js 移除） */
+body[data-booting="1"] .footer { visibility: hidden; }
+.wb-boot {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  min-height: 40vh;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.wb-boot b { font-size: 14px; color: var(--ink-2); }

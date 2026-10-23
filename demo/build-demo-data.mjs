@@ -11,7 +11,7 @@
  * 数据为合成演示，人物与数值不指向任何真实患者；试验条目取自真实登记库样例（登记状态，未核实）。
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -120,14 +120,14 @@ function buildProfile1() {
       { role: 'CAREGIVER', visibility: 'private', date: '2026-09-27', topic: 'CARE_BURDEN', content: '他这两天话变少，不知道是激素还是病。我也快撑不住了。' },
     ],
     decisions: [
-      { topic: '如果确认复发，是否考虑二次手术', status: 'discussed', note: '10-02 与女儿通了电话，还没有和医生谈' },
+      { topic: '如果确认复发，是否考虑二次手术', status: 'discussed', note: '10-02 与女儿通了电话，还没有和医生谈' },  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
       { topic: '预立照护：想和谁谈、什么时候谈', status: 'open', note: null },
     ],
     trials: demoTrials(),
   };
 }
 
-// ── DEMO-2 李秀兰 63 女 · 复发线，照护者代记为主 ──
+// ── DEMO-2 李秀兰 63 女 · 复发线，照护者代记为主 ──  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
 function buildProfile2() {
   return {
     id: 'demo2',
@@ -135,7 +135,7 @@ function buildProfile2() {
     age: 63,
     gender: '女',
     diagnosis: '胶质母细胞瘤（IDH 野生型）· 左额 · 2025-03 确诊',
-    stageLine: '复发评估期 · 术后 14 个月 MRI 强化增大',
+    stageLine: '复发评估期 · 术后 14 个月 MRI 强化增大',  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
     primaryRole: 'CAREGIVER', // 照护者代记为主（双主体）
     cognitiveFlag: 'changed', // 认知状态标记：有变化
     molecular: [
@@ -150,12 +150,12 @@ function buildProfile2() {
     oncology: {
       concurrent: { kind: 'CONCURRENT_RT_TMZ', from: '2025-04-20', to: '2025-05-28', rt: '60Gy/30 次', tmz: '75mg/m² 每日', status: 'completed' },
       adjuvantCycles: [{ n: 1, from: '2025-06-08', to: '2026-03-01', plan: 'D1–5 ×12 周期', took: '完成 12 周期（末次 2026-02）', delayDays: 0, adjust: '第 9 周期起减量 25%（血象，医嘱）' }],
-      recurrence: { note: '2026-09 复发评估期：再放疗 / 洛莫司汀 / 临床试验正在与医生讨论（本产品不推荐任何选项）' },
+      recurrence: { note: '2026-09 复发评估期：再放疗 / 洛莫司汀 / 临床试验正在与医生讨论（本产品不推荐任何选项）' },  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
     },
     ttfields: { started: null, daily: [], monthlyUsage: [], targetHint: null },
     mri: [
       { date: '2026-04-20', excerpt: '术区稳定，无新强化', dexAtTime: 0, kpsAtTime: 80, next: '3 个月后复查' },
-      { date: '2026-09-14', excerpt: '术区强化范围较前增大，周围水肿增多；复发与假性进展待鉴别', dexAtTime: 4, kpsAtTime: 60, next: '复诊讨论再照射与系统治疗选择' },
+      { date: '2026-09-14', excerpt: '术区强化范围较前增大，周围水肿增多；复发与假性进展待鉴别', dexAtTime: 4, kpsAtTime: 60, next: '复诊讨论再照射与系统治疗选择' },  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
     ],
     steroids: [
       { date: '2026-09-14', mg: 4, kind: 'INCREASE', note: 'MRI 后医嘱加量' },
@@ -210,7 +210,7 @@ function demoTrials() {
   return [
     { key: 'CTR20232481', title: '评估电场治疗联合替莫唑胺在新诊断胶质母细胞瘤中的研究（演示样例）', phase: 'III', status: '招募中（登记状态，未核实）', source: 'chinadrugtrials' },
     { key: 'ChiCTR2600127958', title: 'TNFSF9 在胶质母细胞瘤中的作用研究（演示样例）', phase: '观察性', status: '招募中（登记状态，未核实）', source: 'chictr_online' },
-    { key: 'NCT00000000', title: '复发胶质母细胞瘤 溶瘤病毒 研究（演示样例）', phase: 'I/II', status: '招募中（登记状态，未核实）', source: 'ctv' },
+    { key: 'NCT00000000', title: '复发胶质母细胞瘤 溶瘤病毒 研究（演示样例）', phase: 'I/II', status: '招募中（登记状态，未核实）', source: 'ctv' },  // wording-allow: 复发=引用报告/登记原文语境（记录原文照抄），非产品判断
   ];
 }
 
@@ -259,12 +259,207 @@ function finalize() {
   return data;
 }
 
+/**
+ * 直接运行时写两份产物（同一数据源，D10）：
+ *   prototypes/v0.2/demo-data.js（原型直开）+ demo/demo-data.sqlite（按冻结 schema 全迁移建库）。
+ */
+import { DatabaseSync } from 'node:sqlite';
+import { migrate } from '../dsh/store.js';
+
+const SQLITE_OUT = join(ROOT, 'demo', 'demo-data.sqlite');
+
+/* ---------------- sqlite 写入（M5）：finalize() 形状 → 冻结 schema 全量行 ---------------- */
+
+/* 指标字典（与原型 app.js CATALOG 同一份口径；ord=CATALOG 顺序） */
+const METRIC_DEFS = [
+  ['WBC', '白细胞', '10⁹/L', '血象', '#2F5D8A', 1, 'ctcae-v5-absolute', 1],
+  ['ANC', '中性粒细胞', '10⁹/L', '血象', '#4a7ba6', 1, 'ctcae-v5-absolute', 2],
+  ['PLT', '血小板', '10⁹/L', '血象', '#7fa3c0', 1, 'ctcae-v5-absolute', 3],
+  ['HGB', '血红蛋白', 'g/L', '血象', '#a3bfd4', 1, 'ctcae-v5-absolute', 4],
+  ['DEXA', '地塞米松', 'mg/日', '激素', '#9a6410', 1, null, 5],
+  ['WEIGHT', '体重', 'kg', '体格与代谢', '#2f6f66', 1, null, 6],
+  ['NA', '血钠', 'mmol/L', '体格与代谢', '#5f8d86', 1, null, 7],
+  ['KPS', 'KPS 评分', '/100', '功能评估', '#8B87A3', 0, null, 8],
+];
+
+/* 分子标志物：显示名 ↔ schema CHECK 枚举（0001 冻结值） */
+const MARKER_CODE = {
+  'IDH1 R132H': 'IDH1_R132H',
+  'IDH2': 'IDH2',
+  'MGMT 启动子甲基化': 'MGMT_PROMOTER',
+  '1p/19q 共缺失': 'P19Q_CODEL',
+  'TERT 启动子': 'TERT_PROMOTER',
+  'EGFR 扩增': 'EGFR_AMP',
+  'CDKN2A/B 缺失': 'CDKN2AB_DEL',
+  'BRAF V600E': 'BRAF_V600E',
+  'MMR/MSI': 'MMR_MSI',
+  'Ki-67': 'OTHER',
+};
+
+/* 演示年龄 → 出生日期（readmodels 按 meta.today 推回同一整数年龄） */
+const BIRTH_DATE = { demo1: '1968-04-24', demo2: '1963-02-08' };
+
+/**
+ * 把 finalize() 的演示数据写入已迁移的库。单事务、失败整体回滚；幂等由调用方保证
+ * （库里有 profile 就不该走到这里——dsh/demo.js 的 seedDemo 负责判重）。
+ */
+export function writeDemoToDb(db, data) {
+  const run = (sql, ...a) => db.prepare(sql).run(...a);
+  db.exec('BEGIN');
+  try {
+    run('INSERT INTO workspace (id, data_root, schema_version, dataset_state) VALUES (1, NULL, ?, ?)',
+      '0002', JSON.stringify(data.meta));
+
+    for (const [code, label, unit, category, color, isNumeric, ctcaeRule, ord] of METRIC_DEFS) {
+      run('INSERT INTO metric_def (code, label, unit, category, color, is_numeric, ctcae_rule, ord) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        code, label, unit, category, color, isNumeric, ctcaeRule, ord);
+    }
+
+    /* 分子标志物标题字典：全局一份（表 PK 是 marker，不随档案重复登记） */
+    const titles = new Map();
+    for (const p of data.profiles) {
+      p.molecular.forEach((x) => {
+        const code = MARKER_CODE[x.marker] ?? 'OTHER';
+        if (!titles.has(code)) titles.set(code, x.marker);
+      });
+    }
+    let ti = 0;
+    for (const [code, title] of titles) {
+      ti += 1;
+      run('INSERT INTO molecular_marker_title (marker, title, ord) VALUES (?, ?, ?)', code, title, ti);
+    }
+
+    for (const p of data.profiles) {
+      run(`INSERT INTO profile (id, name, birth_date, gender, primary_role, cognitive_flag, created_at, diagnosis, stage_line)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        p.id, p.name, BIRTH_DATE[p.id] ?? null, p.gender, p.primaryRole, p.cognitiveFlag, `${data.meta.dataStart}T00:00:00`, p.diagnosis, p.stageLine);
+
+      p.molecular.forEach((x, i) => {
+        run(`INSERT INTO molecular_marker (profile_id, marker, status, method, specimen_date, note, ord, revision, value_text)
+             VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?)`,
+          p.id, MARKER_CODE[x.marker] ?? 'OTHER', x.status, x.method ?? null, x.date ?? null, x.explain ?? null, i + 1, x.value ?? null);
+      });
+
+      p.surgery.forEach((s, i) => {
+        run(`INSERT INTO surgery_record (profile_id, surgery_date, resection_degree, intraop_notes, hospital, pathology_summary, report_doc_id, ord, revision)
+             VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, 1)`,
+          p.id, s.date, s.degree, s.notes, s.hospital, i + 1);
+      });
+
+      const onc = p.oncology;
+      const c = onc.concurrent;
+      run(`INSERT INTO onco_cycle (profile_id, kind, cycle_number, start_date, end_date, rt_total_gy, rt_fractions,
+             tmz_regimen, status, stop_reason, ord, revision, rt_regimen, took_note, delay_days, dose_adjust, next_on, recurrence_note)
+           VALUES (?, ?, NULL, ?, ?, ?, ?, ?, ?, NULL, 0, 1, ?, NULL, NULL, NULL, ?, ?)`,
+        p.id, c.kind, c.from, c.to, 60, 30, c.tmz, c.status, c.rt, onc.nextOn ?? null, onc.recurrence?.note ?? null);
+      (onc.adjuvantCycles || []).forEach((cy, i) => {
+        run(`INSERT INTO onco_cycle (profile_id, kind, cycle_number, start_date, end_date, rt_total_gy, rt_fractions,
+               tmz_regimen, status, stop_reason, ord, revision, rt_regimen, took_note, delay_days, dose_adjust, next_on, recurrence_note)
+             VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, 'completed', NULL, ?, 1, NULL, ?, ?, ?, NULL, NULL)`,
+          p.id, 'ADJUVANT_TMZ', cy.n, cy.from, cy.to, cy.plan, i + 1, cy.took ?? null, cy.delayDays ?? 0, cy.adjust ?? null);
+      });
+
+      const tt = p.ttfields;
+      run('INSERT INTO ttfields_meta (profile_id, started_on, target_hint) VALUES (?, ?, ?)',
+        p.id, tt.started ?? null, tt.targetHint ?? null);
+      tt.daily.forEach((d, i) => {
+        const front = d.arraysChanged === 'front+back' || d.arraysChanged === 'front' ? 1 : 0;
+        const back = d.arraysChanged === 'front+back' || d.arraysChanged === 'back' ? 1 : 0;
+        run(`INSERT INTO ttfields_daily (profile_id, record_date, wear_hours, arrays_changed_front, arrays_changed_back, skin_reaction, device_note, ord)
+             VALUES (?, ?, ?, ?, ?, ?, NULL, ?)`,
+          p.id, d.date, d.wearHours, front, back, d.skin ?? null, i + 1);
+      });
+      tt.monthlyUsage.forEach((u, i) => {
+        run('INSERT INTO ttfields_monthly (profile_id, month, rate, source_note, ord) VALUES (?, ?, ?, ?, ?)',
+          p.id, u.month, u.rate, u.src, i + 1);
+      });
+
+      p.mri.forEach((x, i) => {
+        run(`INSERT INTO mri_followup (profile_id, exam_date, report_excerpt, steroid_mg_at_time, kps_at_time, next_exam_plan, report_doc_id, ord)
+             VALUES (?, ?, ?, ?, ?, ?, NULL, ?)`,
+          p.id, x.date, x.excerpt, x.dexAtTime, x.kpsAtTime, x.next, i + 1);
+      });
+
+      p.steroids.forEach((s, i) => {
+        run('INSERT INTO steroid_dose (profile_id, change_date, dexamethasone_mg, change_kind, reason_note, ord) VALUES (?, ?, ?, ?, ?, ?)',
+          p.id, s.date, s.mg, s.kind, s.note, i + 1);
+      });
+
+      (p.seizures || []).forEach((s, i) => {
+        run(`INSERT INTO seizure_event (profile_id, onset_at, duration_min, seizure_type, trigger_note, witnessed_by, ord, note)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          p.id, s.onset, s.durationMin, s.type, s.trigger, s.witnessedBy, i + 1, s.note ?? null);
+      });
+
+      (p.aeds || []).forEach((a, i) => {
+        run(`INSERT INTO aed_medication (profile_id, drug, dose, start_date, end_date, level_checked_date, ord, level_note)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          p.id, a.drug, a.dose, a.from, a.to ?? null, a.levelDate ?? null, i + 1, a.levelNote ?? null);
+      });
+
+      (p.cog || []).forEach((x, i) => {
+        run(`INSERT INTO cog_assessment (profile_id, assess_date, scale, score, score_max, done_by, ord, note)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          p.id, x.date, x.scale, x.score, x.max, x.by, i + 1, x.note ?? null);
+      });
+
+      for (const [code, pts] of Object.entries(p.metrics.numeric)) {
+        for (const pt of pts) {
+          run('INSERT INTO metric_point (profile_id, code, measured_at, value_num, value_text, source_note, revision) VALUES (?, ?, ?, ?, NULL, ?, 1)',
+            p.id, code, pt.d, pt.v, pt.src);
+        }
+      }
+
+      (p.viewpoints || []).forEach((v, i) => {
+        run('INSERT INTO viewpoint (profile_id, author_role, visibility, topic, content, record_date, ord) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          p.id, v.role, v.visibility, v.topic, v.content, v.date, i + 1);
+      });
+
+      (p.decisions || []).forEach((d, i) => {
+        run('INSERT INTO decision_checklist (profile_id, topic, status, note, ord) VALUES (?, ?, ?, ?, ?)',
+          p.id, d.topic, d.status, d.note ?? null, i + 1);
+      });
+
+      (p.trials || []).forEach((t, i) => {
+        run('INSERT INTO trial_lead (profile_id, trial_key, title, phase, status_text, source_channel, ord) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          p.id, t.key, t.title, t.phase, t.status, t.source, i + 1);
+      });
+    }
+
+    db.exec('COMMIT');
+  } catch (e) {
+    db.exec('ROLLBACK');
+    throw e;
+  }
+}
+
+/** 重建演示 sqlite（全迁移 + 写入）。库文件已存在则先删——构建产物，不迁就旧内容。 */
+export function buildDemoSqlite(path) {
+  const db = new DatabaseSync(path);
+  try {
+    db.exec('PRAGMA foreign_keys = ON');
+    migrate(db);
+    if (db.prepare('SELECT COUNT(*) AS n FROM profile').get().n > 0) {
+      throw new Error('演示库目标不为空；buildDemoSqlite 要求从空库开始');
+    }
+    writeDemoToDb(db, finalize());
+    return path;
+  } finally {
+    db.close();
+  }
+}
+
 if (process.argv[1] && process.argv[1].endsWith('build-demo-data.mjs')) {
   const data = finalize();
   mkdirSync(dirname(OUT), { recursive: true });
   const js = `// 由 demo/build-demo-data.mjs 生成——唯一数据源，勿手改（ZERO-TO-DEV §1.4）\nconst DEMO_DATA = ${JSON.stringify(data, null, 2)};\n`;
   writeFileSync(OUT, js + `if (typeof module !== 'undefined') module.exports = DEMO_DATA;\n`);
   console.log(`demo-data.js → ${OUT}（profiles=${data.profiles.length}）`);
+  mkdirSync(dirname(SQLITE_OUT), { recursive: true });
+  rmSync(SQLITE_OUT, { force: true });
+  buildDemoSqlite(SQLITE_OUT);
+  console.log(`demo-data.sqlite → ${SQLITE_OUT}（迁移全执行后写入）`);
 }
 
 export { buildDemoProfiles, finalize };
+

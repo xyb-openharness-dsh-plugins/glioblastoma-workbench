@@ -94,3 +94,42 @@
 2. 每个一级页至少一处「AI 协助示例按钮」（把预写提示词放入右栏 AI 输入框但不自动发送——家族"不代替患者发言"契约）。
 3. 卡片「⋯ 更多」菜单含：手工补一条 / 改这一条 /（资料类）看原文。
 4. 本文档路径与原型页签一一对应：M2 验收时按 §二 逐场景点一遍（G2 走查脚本）。
+
+## 五、M5 覆盖矩阵（X1 断言基准，2026-10-24 补）
+
+> M5 移植时按本矩阵验收：30 个 (view,sub) 每个至少被本文一条路径/通道引用；
+> `scripts/check-hvt.mjs` 的 X1 逐行解析本表（key 与标签必须与页面树逐一相同）。
+> S 编号见 §二；§三 指 CRUD 通道矩阵；P1 指 §二 P1 段；本节新增的四条为补全路径（原 §二 未点到，M5 补记）。
+
+| key | 标签 | 覆盖来源 |
+| --- | --- | --- |
+| dash | 看板 | §二 全部路径的入口（看板双主体 8 入口） |
+| tumor/molecular | 分子档案 | S01 |
+| tumor/surgery | 手术与切除 | §三 手术记录（评审补） |
+| tumor/pathology | 病理与报告原文 | §三 分子标志物 · 报告解析→三态候选 |
+| chemo/stupp | Stupp 日程 | S02 |
+| chemo/cycles | TMZ 周期 | S02 周期打卡 · §三 方案变更（评审补） |
+| chemo/changes | 方案与变更 | §三 方案变更（评审补） |
+| ttf/wear | 佩戴与时长 | S03 |
+| ttf/arrays | 贴片与头皮 | S03 头皮异常 · 贴片 |
+| ttf/usage | 设备使用率 | §三 电场日记录（设备月报导入→候选） |
+| mri/parallel | MRI 并列 | S04 |
+| mri/questions | 问题清单 | S04 · §三 问题清单 |
+| mri/archive | 影像档案 | S04 手工路径「登记一份 MRI」 · S13 |
+| lab/blood | 血象 | S09 |
+| lab/steroid | 激素剂量 | S05 |
+| lab/metabolic | 肝肾与电解质 | §三 指标数值（拍化验单→候选） |
+| lab/lab-panorama | 病情一图 | 本节补全 P-a：看板「接下来」→ 病情一图（多指标同轴，G5 三出口过滤之一） |
+| symptom/seizure | 癫痫事件 | S06 |
+| symptom/edema | 脑水肿与症状 | S05 症状/事件同轴并排 |
+| symptom/risks | 感染与血栓 | 本节补全 P-b：症状与发作→感染与血栓（只记事实轨道，§三 症状/感受通道） |
+| nutrition/intake | 进食与体重 | S11 |
+| nutrition/concerns | 当下困扰 | 本节补全 P-c：营养与体重→当下困扰（S11 同线，只记"卡在哪一步"） |
+| care/feelings | 当下感受 | S07 private 感受 · §三 症状/感受 |
+| care/cognition | 认知与人格 | S10 · §三 量表分数（评审补） |
+| care/decisions | 照护决策与 ACP | S07 |
+| followup/schedule | 复查节奏 | 本节补全 P-d：看板「接下来」卡 / 复诊与试验→复查节奏（S04「3 天后复查」入口同源） |
+| followup/prepare | 就诊准备 | S08 |
+| followup/trials | 试验线索 | S12 |
+| followup/enrolled | 已收藏 | S12「收藏」入已收藏 |
+| followup/followup-archive | 资料档案 | S13（页面树键 followup-archive，文档原文称「资料库」） |
