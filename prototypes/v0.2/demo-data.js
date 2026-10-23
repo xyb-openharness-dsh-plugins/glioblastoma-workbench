@@ -1,0 +1,1010 @@
+// 由 demo/build-demo-data.mjs 生成——唯一数据源，勿手改（ZERO-TO-DEV §1.4）
+const DEMO_DATA = {
+  "meta": {
+    "dataStart": "2026-04-24",
+    "today": "2026-10-24",
+    "disclaimer": "演示数据（合成）：人物、数值与时间线不指向任何真实患者。",
+    "trialNote": "试验条目为真实登记库样例，登记状态，未核实。"
+  },
+  "profiles": [
+    {
+      "id": "demo1",
+      "name": "周建国（演示）",
+      "age": 58,
+      "gender": "男",
+      "diagnosis": "胶质母细胞瘤（IDH 野生型，WHO 4 级）· 右颞",
+      "stageLine": "新诊断 · 术后 Stupp 同步放化疗完成 → 辅助 TMZ 第 3 周期",
+      "primaryRole": "PATIENT",
+      "cognitiveFlag": "stable",
+      "molecular": [
+        {
+          "marker": "IDH1 R132H",
+          "status": "not_detected",
+          "method": "免疫组化",
+          "date": "2026-05-06",
+          "explain": "未检出突变。这属于\"IDH 野生型\"语境，与检出型的预后语境不同——具体含义请医生解释，这里不做判断。"
+        },
+        {
+          "marker": "IDH2",
+          "status": "not_tested",
+          "method": null,
+          "date": null,
+          "explain": "未检测。未检测不等于阴性，报告里没有的项目按\"未检测\"记。"
+        },
+        {
+          "marker": "MGMT 启动子甲基化",
+          "status": "not_detected",
+          "method": "焦磷酸测序",
+          "date": "2026-05-06",
+          "explain": "报告写\"未甲基化\"。它与替莫唑胺敏感性的关系是医生选方案时参考的信息之一——本页只解释名词，不预测疗效。"
+        },
+        {
+          "marker": "1p/19q 共缺失",
+          "status": "not_detected",
+          "method": "FISH",
+          "date": "2026-05-06",
+          "explain": "未见共缺失。若出现共缺失，病理会结合形态考虑少突胶质细胞瘤方向——判断归病理医生。"
+        },
+        {
+          "marker": "TERT 启动子",
+          "status": "not_tested",
+          "method": null,
+          "date": null,
+          "explain": "未检测。"
+        },
+        {
+          "marker": "EGFR 扩增",
+          "status": "not_tested",
+          "method": null,
+          "date": null,
+          "explain": "未检测。"
+        },
+        {
+          "marker": "Ki-67",
+          "status": "detected",
+          "method": "免疫组化",
+          "date": "2026-05-06",
+          "value": "约 40%",
+          "explain": "增殖活性指标，报告原文数值照抄，不做解读。"
+        },
+        {
+          "marker": "CDKN2A/B 缺失",
+          "status": "not_tested",
+          "method": null,
+          "date": null,
+          "explain": "未检测。"
+        }
+      ],
+      "surgery": [
+        {
+          "date": "2026-05-02",
+          "degree": "STR",
+          "degreeLabel": "部分切除（医生报告原文）",
+          "notes": "术中导航 + 黄荧光；术后一过性语言欠流畅",
+          "hospital": "市神经外科中心（演示）"
+        }
+      ],
+      "oncology": {
+        "concurrent": {
+          "kind": "CONCURRENT_RT_TMZ",
+          "from": "2026-05-18",
+          "to": "2026-06-26",
+          "rt": "60Gy/30 次（每周 5 次）",
+          "tmz": "75mg/m² 每日（同步期）",
+          "status": "completed"
+        },
+        "adjuvantCycles": [
+          {
+            "n": 1,
+            "from": "2026-07-06",
+            "to": "2026-08-02",
+            "plan": "D1–5 服药",
+            "took": "D1–5 完成，D3 呕吐一次已记",
+            "delayDays": 0,
+            "adjust": null
+          },
+          {
+            "n": 2,
+            "from": "2026-08-03",
+            "to": "2026-08-30",
+            "plan": "D1–5 服药",
+            "took": "D1–5 完成",
+            "delayDays": 0,
+            "adjust": null
+          },
+          {
+            "n": 3,
+            "from": "2026-08-31",
+            "to": "2026-09-27",
+            "plan": "D1–5 服药",
+            "took": "D2 血象低，医生嘱顺延 7 天",
+            "delayDays": 7,
+            "adjust": null
+          }
+        ],
+        "nextOn": "2026-10-28（第 4 周期 D1，待复诊确认血象）"
+      },
+      "ttfields": {
+        "started": "2026-09-10",
+        "daily": [
+          {
+            "date": "2026-09-09",
+            "wearHours": 11.3,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-10",
+            "wearHours": 11.4,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-11",
+            "wearHours": 11.5,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-09-12",
+            "wearHours": 8.6,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-13",
+            "wearHours": 11.7,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-14",
+            "wearHours": 11.8,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-15",
+            "wearHours": 11.9,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-09-16",
+            "wearHours": 12.1,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-17",
+            "wearHours": 12.2,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-18",
+            "wearHours": 12.3,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-19",
+            "wearHours": 9.4,
+            "arraysChanged": "front",
+            "skin": "额部贴片下红痒（记录原文）"
+          },
+          {
+            "date": "2026-09-20",
+            "wearHours": 12.5,
+            "arraysChanged": null,
+            "skin": "额部红痒，已联系设备护士"
+          },
+          {
+            "date": "2026-09-21",
+            "wearHours": 12.6,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-22",
+            "wearHours": 12.7,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-23",
+            "wearHours": 12.8,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-09-24",
+            "wearHours": 12.9,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-25",
+            "wearHours": 13,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-26",
+            "wearHours": 10.1,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-27",
+            "wearHours": 13.2,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-09-28",
+            "wearHours": 13.4,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-09-29",
+            "wearHours": 13.5,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-09-30",
+            "wearHours": 13.6,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-01",
+            "wearHours": 13.7,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-10-02",
+            "wearHours": 13.8,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-03",
+            "wearHours": 10.9,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-10-04",
+            "wearHours": 14,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-05",
+            "wearHours": 14.1,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-10-06",
+            "wearHours": 14.2,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-07",
+            "wearHours": 14.3,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-10-08",
+            "wearHours": 14.4,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-09",
+            "wearHours": 14.5,
+            "arraysChanged": "front",
+            "skin": "枕部轻度脱屑"
+          },
+          {
+            "date": "2026-10-10",
+            "wearHours": 11.6,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-11",
+            "wearHours": 14.8,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-10-12",
+            "wearHours": 14.9,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-13",
+            "wearHours": 15,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-10-14",
+            "wearHours": 15.1,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-15",
+            "wearHours": 15.2,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-10-16",
+            "wearHours": 15.3,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-17",
+            "wearHours": 12.4,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-10-18",
+            "wearHours": 15.5,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-19",
+            "wearHours": 15.6,
+            "arraysChanged": "front+back",
+            "skin": null
+          },
+          {
+            "date": "2026-10-20",
+            "wearHours": 15.7,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-21",
+            "wearHours": 15.8,
+            "arraysChanged": "front",
+            "skin": null
+          },
+          {
+            "date": "2026-10-22",
+            "wearHours": 15.8,
+            "arraysChanged": null,
+            "skin": null
+          },
+          {
+            "date": "2026-10-23",
+            "wearHours": 15.8,
+            "arraysChanged": "front+back",
+            "skin": null
+          }
+        ],
+        "monthlyUsage": [
+          {
+            "month": "2026-09",
+            "rate": 0.68,
+            "src": "设备月报（演示）"
+          }
+        ],
+        "targetHint": "治疗目标语境：每天佩戴时长越长越好（临床研究语境 ≥18 小时/天）——目标由治疗团队解释，本页只记录。"
+      },
+      "mri": [
+        {
+          "date": "2026-05-16",
+          "excerpt": "术后复查：术区改变为主，残余强化灶较术前缩小",
+          "dexAtTime": 4,
+          "kpsAtTime": 80,
+          "next": "同步放化疗结束后复查"
+        },
+        {
+          "date": "2026-07-03",
+          "excerpt": "术区强化范围较前片相仿，水肿同前；放化疗后改变待排",
+          "dexAtTime": 2,
+          "kpsAtTime": 80,
+          "next": "2 个月后复查"
+        },
+        {
+          "date": "2026-09-25",
+          "excerpt": "术区强化范围较前略增大，假性进展待排；建议灌注成像",
+          "dexAtTime": 2,
+          "kpsAtTime": 75,
+          "next": "已预约 2026-11-06 复查 + 复诊讨论"
+        }
+      ],
+      "steroids": [
+        {
+          "date": "2026-05-02",
+          "mg": 8,
+          "kind": "START",
+          "note": "术后开始"
+        },
+        {
+          "date": "2026-05-20",
+          "mg": 4,
+          "kind": "DECREASE",
+          "note": "医嘱减量"
+        },
+        {
+          "date": "2026-06-15",
+          "mg": 2,
+          "kind": "DECREASE",
+          "note": "医嘱减量"
+        },
+        {
+          "date": "2026-07-01",
+          "mg": 1,
+          "kind": "DECREASE",
+          "note": "停药前过渡"
+        },
+        {
+          "date": "2026-07-08",
+          "mg": 0,
+          "kind": "STOP",
+          "note": "停用"
+        },
+        {
+          "date": "2026-09-26",
+          "mg": 2,
+          "kind": "INCREASE",
+          "note": "MRI 后头痛，医嘱加回"
+        }
+      ],
+      "seizures": [
+        {
+          "onset": "2026-04-25 07:10",
+          "durationMin": 1.5,
+          "type": "FOCAL",
+          "trigger": "清晨空腹",
+          "witnessedBy": "CAREGIVER",
+          "note": "愣神 + 右手摸索动作，事后本人无记忆"
+        },
+        {
+          "onset": "2026-09-12 21:40",
+          "durationMin": 1,
+          "type": "AURA",
+          "trigger": "漏服抗癫痫药一次（前夜）",
+          "witnessedBy": "PATIENT",
+          "note": "似曾相识感，未发展为发作"
+        }
+      ],
+      "aeds": [
+        {
+          "drug": "左乙拉西坦",
+          "dose": "500mg 每日两次",
+          "from": "2026-04-26",
+          "to": null,
+          "levelDate": "2026-08-20",
+          "levelNote": "血药浓度在参考范围（报告原文）"
+        }
+      ],
+      "cog": [
+        {
+          "date": "2026-05-20",
+          "scale": "MOCA",
+          "score": 25,
+          "max": 30,
+          "by": "CLINICIAN"
+        },
+        {
+          "date": "2026-09-26",
+          "scale": "MOCA",
+          "score": 23,
+          "max": 30,
+          "by": "CLINICIAN",
+          "note": "评分变化的意义请医生解释，本页只记分"
+        },
+        {
+          "date": "2026-05-16",
+          "scale": "KPS",
+          "score": 80,
+          "max": 100,
+          "by": "CLINICIAN"
+        },
+        {
+          "date": "2026-09-25",
+          "scale": "KPS",
+          "score": 75,
+          "max": 100,
+          "by": "CLINICIAN"
+        }
+      ],
+      "metrics": {
+        "numeric": {
+          "WBC": [
+            {
+              "d": "2026-05-18",
+              "v": 6.2,
+              "src": "同步化疗前基线"
+            },
+            {
+              "d": "2026-06-01",
+              "v": 4.1,
+              "src": "同步期每周血常规"
+            },
+            {
+              "d": "2026-06-15",
+              "v": 3.6,
+              "src": "同步期"
+            },
+            {
+              "d": "2026-06-29",
+              "v": 4.4,
+              "src": "同步期"
+            },
+            {
+              "d": "2026-07-13",
+              "v": 3.9,
+              "src": "辅助 C1D8"
+            },
+            {
+              "d": "2026-07-27",
+              "v": 3.2,
+              "src": "辅助 C1D22"
+            },
+            {
+              "d": "2026-08-10",
+              "v": 3.4,
+              "src": "辅助 C2"
+            },
+            {
+              "d": "2026-08-24",
+              "v": 2.8,
+              "src": "辅助 C2（低点）"
+            },
+            {
+              "d": "2026-09-07",
+              "v": 3.1,
+              "src": "C3 顺延后"
+            },
+            {
+              "d": "2026-09-21",
+              "v": 3.5,
+              "src": "C3"
+            },
+            {
+              "d": "2026-10-12",
+              "v": 3.8,
+              "src": "复查血常规"
+            }
+          ],
+          "DEXA": [
+            {
+              "d": "2026-05-02",
+              "v": 8,
+              "src": "激素记录（地塞米松 mg/日）"
+            },
+            {
+              "d": "2026-05-20",
+              "v": 4,
+              "src": "激素记录（地塞米松 mg/日）"
+            },
+            {
+              "d": "2026-06-15",
+              "v": 2,
+              "src": "激素记录（地塞米松 mg/日）"
+            },
+            {
+              "d": "2026-07-01",
+              "v": 1,
+              "src": "激素记录（地塞米松 mg/日）"
+            },
+            {
+              "d": "2026-07-08",
+              "v": 0,
+              "src": "激素记录（地塞米松 mg/日）"
+            },
+            {
+              "d": "2026-09-26",
+              "v": 2,
+              "src": "激素记录（地塞米松 mg/日）"
+            }
+          ],
+          "WEIGHT": [
+            {
+              "d": "2026-05-18",
+              "v": 72,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            },
+            {
+              "d": "2026-06-15",
+              "v": 73.5,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            },
+            {
+              "d": "2026-07-13",
+              "v": 75,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            },
+            {
+              "d": "2026-08-10",
+              "v": 76.2,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            },
+            {
+              "d": "2026-09-07",
+              "v": 77,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            },
+            {
+              "d": "2026-10-12",
+              "v": 77.8,
+              "src": "家中体重秤（激素期体重上升语境见营养页说明）"
+            }
+          ]
+        },
+        "qual": {
+          "KPS": [
+            {
+              "d": "2026-05-16",
+              "label": "80/100",
+              "v": 80,
+              "src": "医生评估（原文记录）"
+            },
+            {
+              "d": "2026-09-25",
+              "label": "75/100",
+              "v": 75,
+              "src": "医生评估（原文记录）"
+            }
+          ]
+        }
+      },
+      "viewpoints": [
+        {
+          "role": "PATIENT",
+          "visibility": "private",
+          "date": "2026-09-26",
+          "topic": "MOOD",
+          "content": "看到\"增大\"两个字，全家都乱了。我想问清楚但不敢问。"
+        },
+        {
+          "role": "CAREGIVER",
+          "visibility": "private",
+          "date": "2026-09-27",
+          "topic": "CARE_BURDEN",
+          "content": "他这两天话变少，不知道是激素还是病。我也快撑不住了。"
+        }
+      ],
+      "decisions": [
+        {
+          "topic": "如果确认复发，是否考虑二次手术",
+          "status": "discussed",
+          "note": "10-02 与女儿通了电话，还没有和医生谈"
+        },
+        {
+          "topic": "预立照护：想和谁谈、什么时候谈",
+          "status": "open",
+          "note": null
+        }
+      ],
+      "trials": [
+        {
+          "key": "CTR20232481",
+          "title": "评估电场治疗联合替莫唑胺在新诊断胶质母细胞瘤中的研究（演示样例）",
+          "phase": "III",
+          "status": "招募中（登记状态，未核实）",
+          "source": "chinadrugtrials"
+        },
+        {
+          "key": "ChiCTR2600127958",
+          "title": "TNFSF9 在胶质母细胞瘤中的作用研究（演示样例）",
+          "phase": "观察性",
+          "status": "招募中（登记状态，未核实）",
+          "source": "chictr_online"
+        },
+        {
+          "key": "NCT00000000",
+          "title": "复发胶质母细胞瘤 溶瘤病毒 研究（演示样例）",
+          "phase": "I/II",
+          "status": "招募中（登记状态，未核实）",
+          "source": "ctv"
+        }
+      ]
+    },
+    {
+      "id": "demo2",
+      "name": "李秀兰（演示）",
+      "age": 63,
+      "gender": "女",
+      "diagnosis": "胶质母细胞瘤（IDH 野生型）· 左额 · 2025-03 确诊",
+      "stageLine": "复发评估期 · 术后 14 个月 MRI 强化增大",
+      "primaryRole": "CAREGIVER",
+      "cognitiveFlag": "changed",
+      "molecular": [
+        {
+          "marker": "IDH1 R132H",
+          "status": "not_detected",
+          "method": "免疫组化",
+          "date": "2025-04-02",
+          "explain": "IDH 野生型语境（见 DEMO-1 同款解释）。"
+        },
+        {
+          "marker": "MGMT 启动子甲基化",
+          "status": "detected",
+          "method": "焦磷酸测序",
+          "date": "2025-04-02",
+          "explain": "报告写\"甲基化阳性\"。它与替莫唑胺敏感性的关系由医生结合方案解释——本页只记结果与名词。"
+        },
+        {
+          "marker": "1p/19q 共缺失",
+          "status": "not_tested",
+          "method": null,
+          "date": null,
+          "explain": "未检测。"
+        },
+        {
+          "marker": "TERT 启动子",
+          "status": "detected",
+          "method": "NGS",
+          "date": "2025-04-02",
+          "explain": "检出。含义请医生解释。"
+        }
+      ],
+      "surgery": [
+        {
+          "date": "2025-03-28",
+          "degree": "GTR",
+          "degreeLabel": "全切（医生报告原文）",
+          "notes": "术后顺利",
+          "hospital": "省人民医院（演示）"
+        }
+      ],
+      "oncology": {
+        "concurrent": {
+          "kind": "CONCURRENT_RT_TMZ",
+          "from": "2025-04-20",
+          "to": "2025-05-28",
+          "rt": "60Gy/30 次",
+          "tmz": "75mg/m² 每日",
+          "status": "completed"
+        },
+        "adjuvantCycles": [
+          {
+            "n": 1,
+            "from": "2025-06-08",
+            "to": "2026-03-01",
+            "plan": "D1–5 ×12 周期",
+            "took": "完成 12 周期（末次 2026-02）",
+            "delayDays": 0,
+            "adjust": "第 9 周期起减量 25%（血象，医嘱）"
+          }
+        ],
+        "recurrence": {
+          "note": "2026-09 复发评估期：再放疗 / 洛莫司汀 / 临床试验正在与医生讨论（本产品不推荐任何选项）"
+        }
+      },
+      "ttfields": {
+        "started": null,
+        "daily": [],
+        "monthlyUsage": [],
+        "targetHint": null
+      },
+      "mri": [
+        {
+          "date": "2026-04-20",
+          "excerpt": "术区稳定，无新强化",
+          "dexAtTime": 0,
+          "kpsAtTime": 80,
+          "next": "3 个月后复查"
+        },
+        {
+          "date": "2026-09-14",
+          "excerpt": "术区强化范围较前增大，周围水肿增多；复发与假性进展待鉴别",
+          "dexAtTime": 4,
+          "kpsAtTime": 60,
+          "next": "复诊讨论再照射与系统治疗选择"
+        }
+      ],
+      "steroids": [
+        {
+          "date": "2026-09-14",
+          "mg": 4,
+          "kind": "INCREASE",
+          "note": "MRI 后医嘱加量"
+        },
+        {
+          "date": "2026-09-30",
+          "mg": 6,
+          "kind": "INCREASE",
+          "note": "症状波动，医嘱调整"
+        },
+        {
+          "date": "2026-10-15",
+          "mg": 4,
+          "kind": "DECREASE",
+          "note": "症状稍稳，医嘱减量"
+        }
+      ],
+      "seizures": [],
+      "aeds": [
+        {
+          "drug": "左乙拉西坦",
+          "dose": "1000mg 每日两次",
+          "from": "2025-03-29",
+          "to": null,
+          "levelDate": null,
+          "levelNote": null
+        }
+      ],
+      "cog": [
+        {
+          "date": "2026-04-20",
+          "scale": "MOCA",
+          "score": 24,
+          "max": 30,
+          "by": "CLINICIAN"
+        },
+        {
+          "date": "2026-09-14",
+          "scale": "MOCA",
+          "score": 18,
+          "max": 30,
+          "by": "CLINICIAN",
+          "note": "分数变化由医生解释"
+        },
+        {
+          "date": "2026-04-20",
+          "scale": "KPS",
+          "score": 80,
+          "max": 100,
+          "by": "CLINICIAN"
+        },
+        {
+          "date": "2026-09-14",
+          "scale": "KPS",
+          "score": 60,
+          "max": 100,
+          "by": "CLINICIAN"
+        }
+      ],
+      "metrics": {
+        "numeric": {
+          "WEIGHT": [
+            {
+              "d": "2026-04-24",
+              "v": 58,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-05-22",
+              "v": 57.4,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-06-19",
+              "v": 56.8,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-07-17",
+              "v": 55.9,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-08-14",
+              "v": 54.7,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-09-11",
+              "v": 53.2,
+              "src": "照护者代记·家中晨重"
+            },
+            {
+              "d": "2026-10-09",
+              "v": 52.4,
+              "src": "照护者代记·家中晨重"
+            }
+          ],
+          "NA": [
+            {
+              "d": "2026-04-24",
+              "v": 139,
+              "src": "生化报告（原文数值）"
+            },
+            {
+              "d": "2026-06-19",
+              "v": 136,
+              "src": "生化报告（原文数值）"
+            },
+            {
+              "d": "2026-08-14",
+              "v": 132,
+              "src": "生化报告（原文数值）"
+            },
+            {
+              "d": "2026-09-14",
+              "v": 128,
+              "src": "生化报告（原文数值）"
+            },
+            {
+              "d": "2026-10-09",
+              "v": 131,
+              "src": "生化报告（原文数值）"
+            }
+          ]
+        },
+        "qual": {
+          "KPS": [
+            {
+              "d": "2026-04-20",
+              "label": "80/100",
+              "v": 80,
+              "src": "医生评估（原文记录）"
+            },
+            {
+              "d": "2026-09-14",
+              "label": "60/100",
+              "v": 60,
+              "src": "医生评估（原文记录）"
+            }
+          ]
+        }
+      },
+      "viewpoints": [
+        {
+          "role": "CAREGIVER",
+          "visibility": "private",
+          "date": "2026-09-15",
+          "topic": "COGNITION_CHANGE",
+          "content": "妈妈开始把妹妹认成阿姨，晚上不肯睡。"
+        },
+        {
+          "role": "CAREGIVER",
+          "visibility": "shared",
+          "date": "2026-10-02",
+          "topic": "DECISION_ACP",
+          "content": "和医生谈了再放疗的利弊，还谈了\"如果都不做\"这个选项——记下来怕忘了她说过不想再受罪。"
+        }
+      ],
+      "decisions": [
+        {
+          "topic": "再放疗 vs 系统治疗 vs 临床试验",
+          "status": "discussed",
+          "note": "10-02 门诊已谈，等灌注成像结果"
+        },
+        {
+          "topic": "若病情进展，转入安宁照护的时机",
+          "status": "open",
+          "note": "家人之间还没统一，想找机会聊"
+        }
+      ],
+      "trials": [
+        {
+          "key": "CTR20232481",
+          "title": "评估电场治疗联合替莫唑胺在新诊断胶质母细胞瘤中的研究（演示样例）",
+          "phase": "III",
+          "status": "招募中（登记状态，未核实）",
+          "source": "chinadrugtrials"
+        },
+        {
+          "key": "ChiCTR2600127958",
+          "title": "TNFSF9 在胶质母细胞瘤中的作用研究（演示样例）",
+          "phase": "观察性",
+          "status": "招募中（登记状态，未核实）",
+          "source": "chictr_online"
+        }
+      ]
+    }
+  ]
+};
+if (typeof module !== 'undefined') module.exports = DEMO_DATA;

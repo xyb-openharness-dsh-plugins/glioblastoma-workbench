@@ -1,0 +1,49 @@
+{
+  "topic": "glioblastoma",
+  "year": "2026",
+  "snapshotDate": "2026-10-24",
+  "tool": "unified-trial-mcp @ /Users/qinxiaoqiang/Downloads/unified_search_trials/dist/src/cli/main.js",
+  "queries": [
+    {
+      "keyword": "胶质母细胞瘤",
+      "note": "中文标准名"
+    },
+    {
+      "keyword": "复发胶质母细胞瘤",
+      "note": "复发线"
+    },
+    {
+      "keyword": "神经胶质瘤",
+      "note": "宽口径中文"
+    },
+    {
+      "keyword": "glioblastoma",
+      "note": "英文标准名"
+    },
+    {
+      "keyword": "GBM",
+      "note": "缩写"
+    },
+    {
+      "keyword": "high-grade glioma",
+      "note": "高级别胶质瘤"
+    }
+  ],
+  "perSourceLimit": 200,
+  "recordCount": 108,
+  "dbCount": 108,
+  "sourceStatusRows": 36,
+  "honesty": {
+    "offlineCorpora": "ChiCTR/CDE/CTV 离线语料仅胰腺癌覆盖；GBM 只依赖在线通道终态，见 source_statuses 表",
+    "statusWording": "登记 ≠ 有效 ≠ 安全 ≠ 可入组；状态一律\"登记状态，未核实\"",
+    "mergeRule": "仅同一登记号（NCT/ChiCTR/CDE 等）合并，其余并排保留来源"
+  },
+  "files": {
+    "trials-2026.jsonl": {
+      "sha256": "56661852ef36b63bbb7b435bc371b7b17228edb8d57f121b9ec9f395fe75b768"
+    },
+    "glioblastoma_cancer_trials_2026.sqlite": {
+      "sha256": "85a2f5ed413595d0f4bffee35f6c3b508d1053d47eb1e4d78e66cc737859319f"
+    }
+  }
+}
