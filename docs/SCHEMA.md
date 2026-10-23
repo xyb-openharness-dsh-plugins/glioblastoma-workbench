@@ -1,5 +1,8 @@
 # 数据主体—关系—表
 
+> Phase1 草案落点：`schema/draft/0001_gbm_specific.sql`（GBM 专属 11 表：分子三态/手术/放化疗/电场/MRI 并列/激素/癫痫/AED/viewpoint 双主体/决策/量表）+ `schema/draft/0002_family_tables.sql`（档案 2 + 指标 3 + 通用 7 + 导入 3）。
+> 冻结（G3 后）：合并为 `schema/0001_initial.sql` + freeze-contract.md（sha256）。下表为稳定实体视图（G3 签认用）。
+
 | 实体 | 稳定 ID | 主体/外键 | 核心字段/类型 | 约束/索引 | 来源/确认 | 生命周期 |
 | --- | --- | --- | --- | --- | --- | --- |
 | subject | ... | ... | ... | ... | ... | ... |
