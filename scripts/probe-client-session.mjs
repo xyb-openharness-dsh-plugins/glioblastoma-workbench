@@ -23,7 +23,7 @@ import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { launchChrome, sleep, stopChrome } from './cdp.mjs';
-import { HEALTH_PATH } from '../lib/routes.js';
+import { HEALTH_PATH, UI_ENTRY } from '../lib/routes.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SHOTS = join(ROOT, 'docs', 'shots', 'dev');
@@ -111,7 +111,8 @@ const routes = {
   '/react.js': () => ['text/javascript; charset=utf-8', readFileSync(join(REACT_DIR, 'react/umd/react.development.js'), 'utf8')],
   '/react-dom.js': () => ['text/javascript; charset=utf-8', readFileSync(join(REACT_DIR, 'react-dom/umd/react-dom.development.js'), 'utf8')],
   '/client.js': () => ['text/javascript; charset=utf-8', CLIENT],
-  '/ui/': () => ['text/html; charset=utf-8', '<!doctype html><meta charset="utf-8"><body data-probe="ui">业务界面占位</body>'],
+  // iframe 用的是注入进来的 UI_ENTRY（宿主前缀下），不是裸 /ui/ —— 写错会静默 404
+  [UI_ENTRY]: () => ['text/html; charset=utf-8', '<!doctype html><meta charset="utf-8"><body data-probe="ui">业务界面占位</body>'],
   [HEALTH_PATH]: () => ['application/json; charset=utf-8', JSON.stringify({ ok: true, dir: FAKE_DIR })],
 };
 
@@ -158,6 +159,11 @@ try {
   const paneDisplay = () => evalJs("(() => { const a = document.querySelector('aside'); return a ? getComputedStyle(a).display : 'missing' })()");
 
   /* ① 初始：没有会话时按钮必须是"建立会话"，不能是"收起" */
+  // 业务区真加载出来了（iframe 指向 UI_ENTRY，不是 404 空白）
+  const frameOk = await waitFor("(() => { const f = document.querySelector('iframe'); try { return Boolean(f) && f.contentDocument && f.contentDocument.body && f.contentDocument.body.getAttribute('data-probe') === 'ui' } catch (e) { return false } })()");
+  out.businessFrameLoaded = frameOk;
+  if (!frameOk) problems.push('业务 iframe 没有加载出 UI_ENTRY（可能路由写了裸 /ui/）');
+
   out.labelBeforeClick = await label();
   if (out.labelBeforeClick !== 'AI 对话') problems.push(`初始按钮文案是「${out.labelBeforeClick}」，应为「AI 对话」`);
   out.paneBeforeClick = await paneDisplay();
