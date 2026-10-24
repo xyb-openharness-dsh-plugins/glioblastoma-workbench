@@ -1,5 +1,5 @@
 'use strict';
-/* 小星宝 StarPal v0.1.4 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
+/* 小星宝 StarPal v0.1.5 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
    与 prototypes/v0.2/app.js 的关系：渲染函数与事件结构逐字沿用（ui-parity 逐字符比对 #main）；
    差别只有定点替换的五处——数据加载走 /api/bootstrap、AI 五态、面板宽度持久化、
    版本首屏、启动异步化。不要在这里手抄重写渲染函数。
@@ -19,7 +19,7 @@ const WB_LAYOUT = window.__WB_LAYOUT__ && window.__WB_LAYOUT__.agentPane
   : { min: 25, max: 45, default: 35, step: 2, storageKey: 'gbm-starpal.agent.w' };
 
 const APP_INFO = Object.assign({
-  version: '0.1.4',
+  version: '0.1.5',
   build: '2026-10-24',
   channel: 'beta',
   channelLabel: '开发版 · 数据仅在本机',

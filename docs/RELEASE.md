@@ -82,3 +82,17 @@ README/许可证/素材来源/运行依赖/更新说明：...
 | tgz | `release/xyb-community-glioblastoma-workbench-0.1.4.tgz`（43 文件 / 3.58 MB，sha256 `3d0e0d23…f850524`） |
 | 装机 | `harness/profiles/web`：`NODE_OPTIONS= corepack pnpm remove -w` + `add -w --save-exact file:…0.1.4.tgz`；五要素 ✅（version / `dsh` 块 / patch `config.root` / `file:` 依赖 / `bundles` 登记）；装机副本 `lib/client.js` 517 行、`hasConversation` 0 处、`health` 含 `dir` |
 | 待用户 | 重启 DSH Desktop → 打开小星宝 → 点顶栏「AI 对话」应真的新建并绑定原生会话，草稿已填（不自动发送）；再点收起不结束会话；拖分隔边 25%–45% |
+
+## 0.1.5 装机记录（显示修复 · 2026-10-24）
+
+| 项 | 值 |
+| --- | --- |
+| 现象 | AI 对话面板展开后业务区约 65% 宽，看板「最近 KPS / MRI / 激素」三块被压成竖排单字；用户截图指出，并对照宫颈癌工作台 |
+| 根因 | `.change-strip` flex+space-between+flex:1，且 `.chg` 内部横排（span/b/p 并排）→ 每块仅约 100px，三行文字各缩到 20px；`.flag-list div` 用 flex 把 `<b>` 标签变成可收缩项 → 30px |
+| 修复 | 外框改 grid（3×`minmax(0,1fr)` + 按钮 auto）、卡内改纵向；断点 ≤1180 降 2 列 / ≤900 降 1 列；竖线仅 ≥1181；flag-list 去 flex、圆点绝对定位 |
+| 新增检查 | `npm run probe:resp`（8 档宽度 × 10 页，扫竖排单字/横向溢出/内容被裁）+ `test/responsive.test.mjs` 4 项结构断言 |
+| 验证 | 仓库版：8×10 全量 0 命中；装机副本（940px）：`grid-template-columns` 解析为两列各 298px、`.chg` 宽 298、竖排元素 0、横向溢出 0、0 JS 报错，截图 `docs/shots/dev/installed-940-dash-0.1.5.png` |
+| 检查 | `npm run check` 66/66 全绿，版本十处同源 v0.1.5；原型 `prototypes/v0.2/style.css` 同步（逐行一致，G2 闸口不破），台账 DESIGN-09 已记 |
+| tgz | `release/xyb-community-glioblastoma-workbench-0.1.5.tgz`（43 文件 / 3.58 MB，sha256 `6198b41e…77dc35`） |
+| 装机 | `harness/profiles/web` remove + add `--save-exact file:…0.1.5.tgz`；依赖与 bundles 双登记，副本 `VERSION=0.1.5`、含新 grid 规则 |
+| 待用户 | 重启 DSH Desktop → 打开小星宝 → 展开 AI 对话，看板三块应两列且文字横排；再缩窄窗口应降到单列 |

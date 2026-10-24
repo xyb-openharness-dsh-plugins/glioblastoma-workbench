@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.1.5（2026-10-24）· 窄宽自适应：AI 面板打开后看板被压成竖排单字
+
+- 现象（用户截图）：AI 对话面板展开后业务区只剩约 65% 宽，看板「最近 KPS / 最近 MRI /
+  最近激素」三块各自挤成一列竖排单字，「看 MRI 并列 / 看激素阶梯」按钮也被挤到贴着文字。
+- 根因：`.change-strip` 是 `flex + space-between + flex:1`，而每个 `.chg` 内部又是**横排**
+  （标签 span + 值 b + 说明 p 并排）。业务区 940px 时每块只剩约 100px，三行文字各自缩到
+  20px 宽 → 一行一个汉字。营养页「语境一 · 激素期：」同病：`.flag-list div` 用 `display:flex`，
+  `<b>` 标签成了可收缩的 flex item，被压到 30px。
+- 修复：
+  - `.change-strip` 改 **grid**（三块 `minmax(0,1fr)` + 按钮列 auto），宽度由布局决定而不是内容；
+  - `.chg` 内部改**纵向**（标签 / 值 / 注 各占一行），长文本 `overflow-wrap:anywhere`；
+  - 断点：≤1180 降 2 列、按钮独占一行；≤900 降 1 列；竖线只在 ≥1181 出现（否则会落在行首）；
+  - `.flag-list div` 去掉 flex，圆点改绝对定位，正文回归普通流内换行。
+- 新增 `npm run probe:resp`（`scripts/probe-responsive.mjs`）：真实 Chrome，8 档宽度
+  （1300→620）× 10 个一级页，扫三类问题——**竖排单字**（宽度 < 3em 且文字 ≥ 6 字）、
+  **横向溢出**（scrollWidth > innerWidth）、**内容被裁**（`overflow:hidden|clip` 且 scrollWidth 超出）；
+  退出码非 0 即不通过。修复后全量 0 命中。
+- 新增 `test/responsive.test.mjs` 4 项结构断言（卡内纵向、grid 定列、两档断点、flag-list 不用 flex），
+  进 `npm run check`：66/66 全绿，版本十处同源 v0.1.5。
+- 规则沉淀 [docs/RESPONSIVE-RULES.md](docs/RESPONSIVE-RULES.md)：业务区视口 = 业务面板宽度、
+  6 条硬规则、断点取值、验证方式；家族其他工作台可直接抄探针的 SCAN 段。
+- 原型同步：`prototypes/v0.2/style.css` 与 `public/style.css` 一起改（两份必须逐行一致，
+  `test/ui-parity.test.mjs` 是 G2 闸口），台账记于 docs/DESIGN-SESSION.md（DESIGN-09 +
+  G2 原型样式补丁说明：仅显示缺陷修复，页面树/信息结构/文案/数据流未动）。
+- 截图：`docs/shots/dev/responsive-940-dash.png`（940px = AI 面板展开时的业务区宽度）。
+
 ## 0.1.4（2026-10-24）· M6 修复轮四：AI 对话拉不起原生会话（customFrame 三要求落地）
 
 - 现象（用户）：界面能显示，但点「AI 对话」拉不起 DSH 原生会话面板。

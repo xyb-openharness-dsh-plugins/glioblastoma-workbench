@@ -180,12 +180,18 @@ small{font-size:11.5px;color:var(--muted)}
 .task-entry b{grid-column:2;grid-row:1;font-size:12.5px;line-height:1.4;font-weight:600}
 .task-entry>span:not(.entry-icon):not(.arrow){grid-column:2;grid-row:2;font-size:11px;color:var(--muted);line-height:1.5}
 .task-entry .arrow{grid-column:3;grid-row:1/3;color:#aebccb;font-size:14px}
-.change-strip{display:flex;align-items:center;gap:14px;justify-content:space-between;background:#fffaf0;border:1px solid #f0e2c4;border-radius:12px;padding:13px 16px;margin:16px 0 14px;flex-wrap:wrap}
-.change-strip .chg{display:flex;gap:9px;align-items:flex-start;min-width:0;flex:1}
-.change-strip .chg+.chg{border-left:1px solid #f0e2c4;padding-left:14px}
-.change-strip .chg span{display:block;font-size:10px;color:#9a7c30;letter-spacing:.4px}
-.change-strip .chg b{font-size:12px;display:block;line-height:1.5}
-.change-strip .chg p{font-size:10.5px;margin-top:2px;color:#78602a}
+/* 三块"最近变化"：**卡内纵向**（标签 / 值 / 注 各占一行）。
+   0.1.4 之前这里是横排（span+b+p 并排），AI 面板打开后业务区只剩约 60% 宽，
+   每块被压到 100px 上下，三行文字各自挤成一列竖排单字（用户截图即此）。
+   用 grid 定列宽而不是 flex+space-between：后者让每块宽度由内容牵动，窄宽下先后失守。 */
+.change-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:start;gap:14px;background:#fffaf0;border:1px solid #f0e2c4;border-radius:12px;padding:13px 16px;margin:16px 0 14px}
+.change-strip .chg{display:flex;flex-direction:column;gap:2px;min-width:0}
+.change-strip .chg span{font-size:10px;color:#9a7c30;letter-spacing:.4px;line-height:1.45}
+.change-strip .chg b{display:block;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.change-strip .chg p{margin:0;font-size:10.5px;line-height:1.55;color:#78602a;overflow-wrap:anywhere}
+.change-strip .actions{align-self:center;justify-content:flex-end}
+/* 竖线只在真的一行排得下三块时出现；列数一变，竖线会落在行首，反而像缩进错位。 */
+@media(min-width:1181px){.change-strip .chg+.chg{border-left:1px solid #f0e2c4;padding-left:14px}}
 .dash-cols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:2px}
 .dash-cols .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .stack{display:grid;gap:14px;align-content:start}
@@ -410,9 +416,12 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .topic-card h3{font-size:12.5px}
 .topic-card p{font-size:11px;line-height:1.65}
 .topic-card .actions{margin-top:auto}
+/* 每条 = 圆点 + 一段说明。**不能**用 flex：`<b>语境一 · 激素期：</b>` 会变成一个可收缩的
+   flex item，窄宽下被压到 30px 上下 → 标签竖排单字（0.1.5 探针在 1000/940 宽扫到）。
+   圆点用绝对定位，正文保持普通流内换行。 */
 .flag-list{display:grid;gap:7px;margin-top:10px}
-.flag-list div{display:flex;gap:9px;font-size:11.5px;color:var(--ink-2);line-height:1.6}
-.flag-list div::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--brand);margin-top:7px;flex:0 0 5px}
+.flag-list div{position:relative;padding-left:14px;font-size:11.5px;color:var(--ink-2);line-height:1.6}
+.flag-list div::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--brand)}
 .trial-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;margin-bottom:12px}
 .trial-card .card-head{margin-bottom:8px}
 .channel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:9px}
@@ -495,6 +504,9 @@ body.large .mface .name,body.large .ccard .name{font-size:13.5px}
 /* ---------- 响应式 ---------- */
 @media(max-width:1180px){
   .topbar{flex-wrap:wrap;gap:8px 14px}
+  /* 三块"最近变化"降到 2 列，按钮独占一行：3 列在此宽度下每块只剩 200px 出头 */
+  .change-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .change-strip .actions{grid-column:1/-1;align-self:start;justify-content:flex-start}
   .dash-cols{grid-template-columns:minmax(0,1fr)}
   .stack{grid-template-columns:repeat(auto-fit,minmax(286px,1fr))}
   .overview{grid-template-columns:minmax(0,1fr)}
@@ -530,8 +542,7 @@ body.large .mface .name,body.large .ccard .name{font-size:13.5px}
   .prototype-bar span:last-child{display:none}
   #agent-pane{position:fixed;right:0;top:0;bottom:0;width:min(420px,92vw);max-width:none;z-index:40;box-shadow:0 0 40px rgba(24,38,52,.18)}
   #agent-splitter{display:none}
-  .change-strip .chg+.chg{border-left:0;padding-left:0}
-  .change-strip{flex-direction:column;align-items:stretch}
+  .change-strip{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:600px){
   .ver-chip{display:none}

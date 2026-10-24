@@ -1,6 +1,6 @@
 {
   "name": "@xyb-community/glioblastoma-workbench",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "小星宝 StarPal：面向胶质母细胞瘤患者与照护者的本机病程资料、分子档案、治疗历程、指标趋势与医患沟通工作台",
   "private": true,
   "type": "module",
@@ -44,6 +44,7 @@
     "check:hvt": "node --disable-warning=ExperimentalWarning scripts/check-hvt.mjs",
     "probe": "node --disable-warning=ExperimentalWarning scripts/probe-headless.mjs",
     "probe:client": "node scripts/probe-client-session.mjs",
+    "probe:resp": "node --disable-warning=ExperimentalWarning scripts/probe-responsive.mjs",
     "pack:check": "npm pack --dry-run",
     "start": "node --disable-warning=ExperimentalWarning scripts/dev-server.mjs"
   },
