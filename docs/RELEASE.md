@@ -96,3 +96,9 @@ README/许可证/素材来源/运行依赖/更新说明：...
 | tgz | `release/xyb-community-glioblastoma-workbench-0.1.5.tgz`（43 文件 / 3.58 MB，sha256 `6198b41e…77dc35`） |
 | 装机 | `harness/profiles/web` remove + add `--save-exact file:…0.1.5.tgz`；依赖与 bundles 双登记，副本 `VERSION=0.1.5`、含新 grid 规则 |
 | 待用户 | 重启 DSH Desktop → 打开小星宝 → 展开 AI 对话，看板三块应两列且文字横排；再缩窄窗口应降到单列 |
+
+## V2/V3 真机走查（2026-10-24，用户实机确认）
+
+- 用户原话"确认ok"（对 V2/V3 请求的整体确认，会话）。
+- **V2/V3 判定：通过**——M6 收口，进 M7 发布。
+- 如实记录：用户未逐项列明子项（切页/AI 面板/落盘重开），以整体确认为准；首次会话授权流程（新建会话后连接）同 MPM 轮。
