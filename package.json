@@ -1,6 +1,6 @@
 {
   "name": "@xyb-community/glioblastoma-workbench",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "小星宝 StarPal：面向胶质母细胞瘤患者与照护者的本机病程资料、分子档案、治疗历程、指标趋势与医患沟通工作台",
   "private": true,
   "type": "module",

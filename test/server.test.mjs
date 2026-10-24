@@ -5,6 +5,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { displayVersion } from '../lib/version.js';
 import { Readable } from 'node:stream';
 import { mkdtempSync, readFileSync, existsSync, writeFileSync, rmSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -84,7 +85,7 @@ test('bootstrap：两档案 + 版本 + 布局注入（apiBase 不含 /api）', a
   assert.equal(r.status, 200);
   assert.equal(r.json.profileId, 'demo1');
   assert.equal(r.json.profiles.length, 2);
-  assert.match(r.json.app.displayVersion, /^v0\.1\.0$/);
+  assert.equal(r.json.app.displayVersion, displayVersion); // 与 lib/version.js 唯一源同值，不写死
   assert.equal(r.json.layout.agentPane.min, 25);
   assert.equal(r.json.layout.agentPane.max, 45);
   assert.equal(r.json.layout.agentPane.default, 35);
