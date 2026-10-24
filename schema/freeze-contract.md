@@ -28,3 +28,9 @@ GBM 专属：molecular_marker(+title)（三态）/ surgery_record / onco_cycle /
 | 日期 | 文件 | 内容 | 依据 |
 | --- | --- | --- | --- |
 | 2026-10-24（M5） | `0002_parity_columns.sql` | ALTER 追加 8 列（profile×2 / onco_cycle×6 / seizure_event / aed_medication / cog_assessment / molecular_marker 共 12 列）+ 新表 3 张（ttfields_meta / ttfields_monthly / trial_lead） | 冻结规则 2/3：0001 未动（sha256 仍为上表值）；缺列在 M5 移植 parity 实测中发现，属“发布前发现漏列走 ALTER”的家族既有路径（ZERO-TO-DEV §1.2 / D5） |
+
+## 追认记录
+
+| 日期 | 迁移 | 追认 |
+| --- | --- | --- |
+| 2026-10-24 | `0002_parity_columns.sql`（ALTER 12 列 + ttfields_meta / ttfields_monthly / trial_lead 3 表） | **用户追认 ✅**（原话"确认0002"，会话） |
