@@ -34,3 +34,14 @@ README/许可证/素材来源/运行依赖/更新说明：...
 | harness.log | ✅ 无 import failed（日志最近一次启动为 10-20，装机后未重启） |
 | state.json added | ⏳ 未出现（需用户在 dsh-desktop 内"添加工作台"；家族统一路径） |
 | **UI 加载/业务验证（V2/V3）** | **未验证**——待用户：重启 dsh-desktop → 工作台列表添加 → 走核心流程（打开/切页/AI 面板/数据落盘/重开资料还在/版本首屏） |
+
+## 0.1.1 装机记录（M6 修复轮 · 2026-10-24）
+
+| 项 | 值 |
+| --- | --- |
+| 根因 | ① 包缺 `dsh` 块与 patch `config.root`（服务 404）② 违反 06 号"本地包递增版本"规则：同版号 0.1.0 重打包换内容，宿主版本簿记冲突（用户报"tar包版本号不对"）③ public/ 三处降级字面量与 server 测试断言写死版本 |
+| 修复 | 0684aa7（接线）+ 8569055/527192f（v0.1.1：VERSION/package.json/public 三处/断言改唯一源），check 全绿 47/47、版本十处同源 |
+| tgz | `xyb-community-glioblastoma-workbench-0.1.1.tgz`（sha256 `e2d18b55…fb69b09`，npm shasum be2d49aa） |
+| 安装 | 按 06 号文档乳腺癌首装实录：`NODE_OPTIONS= corepack pnpm remove -w` + `add -w --save-exact file:…0.1.1.tgz`（corepack 遵循 profile packageManager 10.34.5） |
+| 验证 | 装机副本五要素 ✅：version 0.1.1 / dsh 块 / patch config.root / file: 依赖 / bundles 登记在册（用户 UI 添加时宿主已登记） |
+| 待用户 | 重启 DSH Desktop → 工作台应能连接服务（数据目录 harness/glioblastoma-workbench/）→ 走核心流程 |
