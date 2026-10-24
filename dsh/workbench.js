@@ -9,15 +9,14 @@ import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createWorkbenchServer } from './server.js';
+import { HOST_BASE, API_PREFIX_NAME, UI_ENTRY, HEALTH_PATH } from '../lib/routes.js';
 
 /** 插件条目 id：与 cordis.patch.yml 的 insert[].id 同值 */
 export const PLUGIN_ID = 'glioblastoma-workbench-main';
 /** 主题前缀（设置接口路径 /api/<API_PREFIX>/settings/mineru 与库文件名共用它） */
-export const API_PREFIX = 'glioblastoma';
-/** 宿主挂载前缀：宿主按这个前缀把请求整段转给本工作台 */
-export const HOST_BASE = `/api/${API_PREFIX}-workbench`;
-/** 面板 iframe src */
-export const UI_ENTRY = `${HOST_BASE}/ui/`;
+export const API_PREFIX = API_PREFIX_NAME;
+/** 宿主挂载前缀与 iframe src 来自 lib/routes.js（客户端构建同源，别在这里写第二份） */
+export { HOST_BASE, UI_ENTRY, HEALTH_PATH };
 /** 业务库文件名（DB_FILE） */
 export const DB_FILE = 'xyb-glioblastoma.sqlite';
 

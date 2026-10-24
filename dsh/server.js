@@ -100,11 +100,19 @@ export function createWorkbenchServer({
 
   const routes = {
     /* ---------------- 读 ---------------- */
+    /**
+     * `dir` 只有一个用途：面板里点「AI 对话」时作为 `ensureSession({ folder })` 的业务目录。
+     * 宿主的 `ensureSession` 要求 folder 是非空字符串，否则抛「创建会话需要业务项目文件夹。」
+     * ——0.1.3 之前这里没有 dir，客户端传 null，点按钮必然失败且只看到一句没头没尾的报错。
+     * 优先用资料目录（workspace.data_root），没设就用库所在目录（宿主分配的 config.root，
+     * 原件与导出都在它下面）。本机同源，无额外泄露面。
+     */
     'GET /api/health': () => ({
       ok: true,
       version: APP_INFO.version,
       displayVersion: APP_INFO.displayVersion,
       apiVersion: 'v1',
+      dir: store.workspace().root || dbDir,
       capabilities: ['health', 'bootstrap', 'mineru-parse', 'mineru-settings'],
     }),
 

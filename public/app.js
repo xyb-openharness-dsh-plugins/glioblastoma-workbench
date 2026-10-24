@@ -1,5 +1,5 @@
 'use strict';
-/* 小星宝 StarPal v0.1.1 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
+/* 小星宝 StarPal v0.1.4 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
    与 prototypes/v0.2/app.js 的关系：渲染函数与事件结构逐字沿用（ui-parity 逐字符比对 #main）；
    差别只有定点替换的五处——数据加载走 /api/bootstrap、AI 五态、面板宽度持久化、
    版本首屏、启动异步化。不要在这里手抄重写渲染函数。
@@ -7,15 +7,19 @@
    禁词（建议治疗/可能复发/可以停药/无需就医/推荐方案/治愈率/生存率）不出现在产品自己的句子中。 */ // wording-allow: 红线自检清单本身要出现禁词（否定语境）
 
 /* ---------------- 外壳注入（服务端渲染 index.html 时替换；直开时用字面量兑底） ---------------- */
-const API_BASE = (document.documentElement.dataset.apiBase || '').replace(/\/+$/, ''); /* 不含 /api（F3） */
+/* API_BASE = 宿主挂载前缀（宿主模式 `/api/glioblastoma-workbench`，独立启动为空串）。
+   接口路径本身已带 `/api`，所以这里只禁止**以 `/api` 结尾**（否则会拼成 `/api/api/...`）；
+   宿主前缀里有 `/api` 是正常的，不能因此抛错——0.1.3 首版在这里 `includes('/api')` 抛异常，
+   整个 app.js 直接不执行，界面全白。 */
+const API_BASE = (document.documentElement.dataset.apiBase || '').replace(/\/+$/, ''); /* 只约束结尾，不约束包含 */
 const RUNTIME = document.documentElement.dataset.runtime || 'standalone';
-if (API_BASE.includes('/api')) throw new Error('API_BASE 不许含 /api（F3：接口路径自带 /api）');
+if (/(^|\/)api$/.test(API_BASE)) throw new Error('API_BASE 不能以 /api 结尾（接口路径自带 /api）');
 const WB_LAYOUT = window.__WB_LAYOUT__ && window.__WB_LAYOUT__.agentPane
   ? window.__WB_LAYOUT__.agentPane
   : { min: 25, max: 45, default: 35, step: 2, storageKey: 'gbm-starpal.agent.w' };
 
 const APP_INFO = Object.assign({
-  version: '0.1.1',
+  version: '0.1.4',
   build: '2026-10-24',
   channel: 'beta',
   channelLabel: '开发版 · 数据仅在本机',

@@ -9,7 +9,7 @@ import { displayVersion } from '../lib/version.js';
 import { Readable } from 'node:stream';
 import { mkdtempSync, readFileSync, existsSync, writeFileSync, rmSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { createWorkbenchServer, stripBasePath } from '../dsh/server.js';
 import { migrate } from '../dsh/store.js';
@@ -265,4 +265,18 @@ test('decide：reject 零副作用删除；不存在 404；非法 action 400', (
   const svc = createParseService(db, { today: () => '2026-10-24T00:00:00Z' });
   assert.throws(() => svc.decideCandidate({ candidateId: 999, action: 'accept' }), (e) => e instanceof ParseError && e.status === 404);
   db.close();
+});
+
+test('health 必须给出业务目录 dir（ensureSession 的 folder，空则拉不起会话）', async () => {
+  // 0.1.3 装机后点「AI 对话」只会看到「创建会话需要业务项目文件夹。」，
+  // 因为 health 不返回 dir，客户端把 null 传给了宿主的 ensureSession。
+  const { dir } = appWithSecretDir();
+  const dbPath = join(dir, 'xyb-glioblastoma.sqlite');
+  const hosted = createWorkbenchServer({ dbPath, basePath: '/api/glioblastoma-workbench' });
+  const r = await call(hosted, 'GET', '/api/health');
+  assert.equal(r.status, 200);
+  assert.equal(typeof r.json.dir, 'string');
+  assert.ok(r.json.dir.length > 0, 'health.dir 不能是空字符串');
+  assert.ok(isAbsolute(r.json.dir), `health.dir 应是绝对路径，实际 ${r.json.dir}`);
+  assert.equal(r.json.dir, dir, '没设资料目录时 dir 就是库所在目录（宿主分配的 config.root）');
 });

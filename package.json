@@ -1,6 +1,6 @@
 {
   "name": "@xyb-community/glioblastoma-workbench",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "小星宝 StarPal：面向胶质母细胞瘤患者与照护者的本机病程资料、分子档案、治疗历程、指标趋势与医患沟通工作台",
   "private": true,
   "type": "module",
@@ -38,10 +38,12 @@
   ],
   "scripts": {
     "build:version": "STARPAL_CHANNEL=beta node scripts/build-version.mjs",
+    "build:client": "node scripts/build-client.mjs",
     "build:demo": "node --disable-warning=ExperimentalWarning demo/build-demo-data.mjs",
-    "check": "STARPAL_CHANNEL=beta node scripts/build-version.mjs --check && node scripts/check-syntax.mjs && node scripts/check-schema.mjs && node scripts/check-wording.mjs && node --disable-warning=ExperimentalWarning scripts/check-demo-columns.mjs && node --disable-warning=ExperimentalWarning --test test/*.test.mjs && node scripts/check-version.mjs && node scripts/check-workbench-package.mjs .",
+    "check": "STARPAL_CHANNEL=beta node scripts/build-version.mjs --check && node scripts/build-client.mjs --check && node scripts/check-syntax.mjs && node scripts/check-schema.mjs && node scripts/check-wording.mjs && node --disable-warning=ExperimentalWarning scripts/check-demo-columns.mjs && node --disable-warning=ExperimentalWarning --test test/*.test.mjs && node scripts/check-version.mjs && node scripts/check-workbench-package.mjs .",
     "check:hvt": "node --disable-warning=ExperimentalWarning scripts/check-hvt.mjs",
     "probe": "node --disable-warning=ExperimentalWarning scripts/probe-headless.mjs",
+    "probe:client": "node scripts/probe-client-session.mjs",
     "pack:check": "npm pack --dry-run",
     "start": "node --disable-warning=ExperimentalWarning scripts/dev-server.mjs"
   },
