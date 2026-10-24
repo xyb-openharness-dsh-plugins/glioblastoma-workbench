@@ -13,6 +13,17 @@
     "./package.json": "./package.json",
     "./cordis.patch.yml": "./cordis.patch.yml"
   },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "dsh-desktop-workbenches"
+      ]
+    }
+  },
   "files": [
     "dsh",
     "lib",
@@ -33,17 +44,6 @@
     "probe": "node --disable-warning=ExperimentalWarning scripts/probe-headless.mjs",
     "pack:check": "npm pack --dry-run",
     "start": "node --disable-warning=ExperimentalWarning scripts/dev-server.mjs"
-  },
-  "dsh": {
-    "bundle": {
-      "patch": "./cordis.patch.yml"
-    },
-    "client": {
-      "platform": "web",
-      "inject": [
-        "dsh-desktop-workbenches"
-      ]
-    }
   },
   "repository": {
     "type": "git",

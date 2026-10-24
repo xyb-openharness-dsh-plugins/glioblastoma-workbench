@@ -1,3 +1,13 @@
+# 把服务端入口插进 Harness 的插件树（workbench-standard §3.3）。
+#
+# 两条硬规则：
+# 1. name 必须写 npm 包名，写相对路径或绝对路径 Node 解析不到；
+# 2. 空文件或纯注释文件会导致启动失败——有条目就照下面写，没有条目时写 `[]`。
+#
+# id / config.root 的取值与 dsh/workbench.js 的 PLUGIN_ID、HOST_BASE 三处同值，别手改这里。
+
 - insert:
     - id: glioblastoma-workbench-main
       name: "@xyb-community/glioblastoma-workbench"
+      config:
+        root: !!js dshHomePath('glioblastoma-workbench')
