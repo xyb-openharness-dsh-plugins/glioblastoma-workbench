@@ -40,6 +40,7 @@
     "build:version": "STARPAL_CHANNEL=beta node scripts/build-version.mjs",
     "build:client": "node scripts/build-client.mjs",
     "build:demo": "node --disable-warning=ExperimentalWarning demo/build-demo-data.mjs",
+    "probe:primer": "node scripts/probe-disease-primer.mjs",
     "check": "STARPAL_CHANNEL=beta node scripts/build-version.mjs --check && node scripts/build-client.mjs --check && node scripts/check-syntax.mjs && node scripts/check-schema.mjs && node scripts/check-wording.mjs && node --disable-warning=ExperimentalWarning scripts/check-demo-columns.mjs && node --disable-warning=ExperimentalWarning --test test/*.test.mjs && node scripts/check-version.mjs && node scripts/check-workbench-package.mjs .",
     "check:hvt": "node --disable-warning=ExperimentalWarning scripts/check-hvt.mjs",
     "probe": "node --disable-warning=ExperimentalWarning scripts/probe-headless.mjs",
