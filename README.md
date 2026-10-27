@@ -6,7 +6,7 @@ MRI 随访、放化疗与电场治疗、血象与症状记录整理成可核对�
 > 本工作台只提供信息，**不做诊断、不做处置建议**。判读与决定由患者及其神经肿瘤治疗团队做出。
 > 用户自己记下的担心或判断按"一条信息"保存，并标注"不是医生结论"，不进趋势、不进摘要事实区。
 
-- 当前版本：**v0.1.5**（开发版 · 数据仅在本机）
+- 当前版本：**v0.1.6**（开发版 · 数据仅在本机）
 - 宿主形态：DSH Desktop 工作台（customFrame，可拉起原生会话）
 - 许可证：UNLICENSED · 仓库私有 · **未上架市场**
 
@@ -85,13 +85,13 @@ MRI 随访、放化疗与电场治疗、血象与症状记录整理成可核对�
 ## 安装
 
 需要 Node.js 22+ 与 DSH Desktop。当前只提供**本机 tgz**（未上架市场）：
-[Release v0.1.5](https://github.com/xyb-openharness-dsh-plugins/glioblastoma-workbench/releases/tag/v0.1.5)
-的 `xyb-community-glioblastoma-workbench-0.1.5.tgz`
+[Release v0.1.6](https://github.com/xyb-openharness-dsh-plugins/glioblastoma-workbench/releases/tag/v0.1.6)
+的 `xyb-community-glioblastoma-workbench-0.1.6.tgz`
 （sha256 `6198b41e534607e19ac974ebc764b47471aaf4a836e2a327e30e32b20177dc35`）。
 
 ```bash
 cd ~/Library/Application\ Support/dsh-desktop/harness/profiles/web
-NODE_OPTIONS= corepack pnpm add -w --save-exact file:/绝对路径/xyb-community-glioblastoma-workbench-0.1.5.tgz
+NODE_OPTIONS= corepack pnpm add -w --save-exact file:/绝对路径/xyb-community-glioblastoma-workbench-0.1.6.tgz
 ```
 
 装完重启 DSH Desktop → 设置 → 通用 → 启用工作台 → 添加「小星宝」。同版号内容变更时宿主不会替换，

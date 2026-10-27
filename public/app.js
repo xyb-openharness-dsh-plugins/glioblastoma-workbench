@@ -1,5 +1,5 @@
 'use strict';
-/* 小星宝 StarPal v0.1.5 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
+/* 小星宝 StarPal v0.1.6 — 胶质母细胞瘤（GBM）工作台开发版（M5）。
    与 prototypes/v0.2/app.js 的关系：渲染函数与事件结构逐字沿用（ui-parity 逐字符比对 #main）；
    差别只有定点替换的五处——数据加载走 /api/bootstrap、AI 五态、面板宽度持久化、
    版本首屏、启动异步化。不要在这里手抄重写渲染函数。
@@ -19,8 +19,8 @@ const WB_LAYOUT = window.__WB_LAYOUT__ && window.__WB_LAYOUT__.agentPane
   : { min: 25, max: 45, default: 35, step: 2, storageKey: 'gbm-starpal.agent.w' };
 
 const APP_INFO = Object.assign({
-  version: '0.1.5',
-  build: '2026-10-24',
+  version: '0.1.6',
+  build: '2026-10-25',
   channel: 'beta',
   channelLabel: '开发版 · 数据仅在本机',
   brand: '小星宝 StarPal',
@@ -451,6 +451,62 @@ function metricCard(code) {
   </button>`;
 }
 
+/* ---------------- 36 号 §2.6 看板状态卡（疾病概要的触发器） ----------------
+   四件硬结构：卡头（D+N eyebrow）／大字天数（锚点日派生，不手填）／现状行（阶段原文 + 状态 + 下次）／
+   出口按钮排（主=当前阶段核心页，副=疾病概要浮窗）。
+   天数一律由「手术日 = Day 0」派生：换演示日期或换档案时天数自己跟着变，不出现写死的 175。 */
+const DP_TRIGGER_ATTR = 'data-primer-open';
+function statusCard(p) {
+  const surg = (p.surgery && p.surgery[0]) || null;
+  const anchor = surg ? surg.date : null;
+  const dayN = anchor ? daysBetween(anchor, TODAY) : null;
+  const onc = p.oncology || {};
+  const cyc = onc.adjuvantCycles || [];
+  const lastCyc = cyc[cyc.length - 1];
+  const nextDate = ((onc.nextOn || '').match(/\d{4}-\d{2}-\d{2}/) || [])[0] || null;
+  const nextIn = nextDate ? daysBetween(TODAY, nextDate) : null;
+  const phase = String(p.stageLine || '').split('→').pop().trim();
+  const summaryBtn = `<button type="button" class="text-button" ${DP_TRIGGER_ATTR} aria-haspopup="dialog" aria-controls="disease-primer" aria-label="疾病概要：定义、医学资料与指南情况、治疗全景、发展趋势">疾病概要：胶质母细胞瘤是什么？</button>`;
+
+  /* 没有锚点：整卡「待初始化」，指向补记录，不用一个假天数糊过去。 */
+  if (dayN === null) {
+    return `<div class="card" style="border-left:3px solid var(--brand);margin-bottom:16px">
+      <span class="eyebrow">状态卡 · 待初始化</span>
+      <p style="margin:8px 0 0"><b>还没有手术日期</b>（Day 0），天数与阶段无法派生。补上手术记录后这张卡自己算。</p>
+      <div class="actions" style="margin-top:12px">${go('去补手术记录', 'tumor', 'surgery', 'primary')}${summaryBtn}</div>
+    </div>`
+  }
+
+  /* 状态只写「日期到了没有」这类事实，不写「稳定 / 好转 / 进展」。 */
+  const status = lastCyc
+    ? (lastCyc.to && lastCyc.to < TODAY
+        ? `第 ${lastCyc.n} 周期已结束（${longDate(lastCyc.to)}）· ${nextDate ? '等下一周期 D1' : '等复诊排期'}`
+        : `第 ${lastCyc.n} 周期进行中（${longDate(lastCyc.from)} 起）`)
+    : '尚无辅助化疗记录';
+
+  return `<div class="card" style="border-left:3px solid var(--brand);margin-bottom:16px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div style="min-width:0">
+        <span class="eyebrow">D+${dayN} 状态卡 · ${nextIn !== null && nextIn >= 0 ? `距下次 ${nextIn} 天` : '下次待通知'}</span>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 2px">
+          <div style="font-size:28px;font-weight:700;color:var(--brand);line-height:1.1">第 ${dayN} 天</div>
+          <small style="color:var(--muted);font-size:11px">锚点 ${longDate(anchor)}${surg.degreeLabel ? ' · ' + esc(surg.degreeLabel) : ''} · 自动派生，不手填</small>
+        </div>
+      </div>
+      ${pill(nextDate ? `下次 ${shortDate(nextDate)}` : '下次待通知', 'blue')}
+    </div>
+    <p style="margin:8px 0 0;font-size:12.5px;line-height:1.7">
+      <b>阶段原文</b>：${esc(phase)}　·　<b>状态</b>：${esc(status)}<br>
+      <b>下次</b>：${nextDate ? `${longDate(nextDate)}（${esc(onc.nextOn.replace(/\s*[（(].*$/, ''))}）` : '待医院排期'}
+    </p>
+    <p class="small-note" style="margin:4px 0 0">诊断原文：${esc(p.diagnosis)} · ${p.age} 岁 · 演示数据</p>
+    <div class="actions" style="margin-top:12px">
+      ${go('看放化疗日历（按天）→', 'chemo', 'stupp', 'primary')}
+      ${summaryBtn}
+    </div>
+  </div>`
+}
+
 /* ---------------- 看板 ---------------- */
 function nextCycleInfo(p) {
   const onc = p.oncology;
@@ -493,6 +549,7 @@ function pageDash() {
   const recentCards = state.sel[state.profileId].filter((c) => c !== 'KPS').slice(0, 3);
 
   return `${head('看板', SUBTITLES.dash, aiBtn())}
+    ${statusCard(p)}
     <div class="stage-strip"><span class="eyebrow">当前阶段 · 引用医生语境</span><b>${esc(p.stageLine)}</b><small>${esc(p.diagnosis)} · ${p.age} 岁 · 演示数据</small></div>
     ${duo('本人 · 现在可以做', 'self', selfEntries)}
     ${duo('照护者 · 现在可以做', 'care', careEntries)}
