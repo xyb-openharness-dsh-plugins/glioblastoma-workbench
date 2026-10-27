@@ -5,7 +5,7 @@
 
 - 项目 / 品牌：小星宝 StarPal
 - 病种：胶质母细胞瘤（Glioblastoma，GBM）
-- 最后更新：2026-10-25
+- 最后更新：2026-10-27
 - 数据文件：`prototypes/v0.2/primer-data.js`（`window.DISEASE_PRIMER`）
 - README 对应段：`## 疾病概要`
 
@@ -21,18 +21,18 @@
 - 不写「预后差 / 恶性程度高 / 发展快」这类判读。
 - 分子标记只记报告原文的「检出 / 未检出 / 未检测」，不补阴性、不推断。
 
-**来源**：国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · 原件已取得 · 页码待核 ｜ WHO · Classification of Tumours of the Central Nervous System, 5th ed. · 2021 · 未取得原件，据二次来源 · 页码待核 ｜ CACA · 脑胶质瘤诊疗指南（2022 精简版）· 2022 · 原件已取得 · 页码待核
+**来源**：国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · [原件已取得 · 打开/下载 ↗](https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml) · 页码待核 ｜ WHO · Classification of Tumours of the Central Nervous System, 5th ed. · 2021 · [未取得原件，据二次来源 ↗](https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021) · 页码待核 ｜ CACA · 脑胶质瘤诊疗指南（2022 精简版）· 2022 · [未取得原件，据二次来源 ↗](https://www.medsci.cn/guideline/show_article.do?id=2379e1c003e9a140) · 页码待核（期刊 DOI 403、cjco.cn 证书失效）
 
 ## 2 医学资料规范和指南情况（`evidence`）
 
 | 机构 | 文件 | 版本 / 年份 | 原件 | 本台的用途 |
 |---|---|---|---|---|
-| 国家卫健委 | 脑胶质瘤诊疗指南（2022 年版） | 2022 | 已取得（全文 PDF 已提取） | 手术、放疗、替莫唑胺同步 / 辅助、老年 KPS 分层、复发后选项的原文依据 |
-| CACA | 脑胶质瘤诊疗指南（2022 精简版） | 2022 | 已取得 | 中文规范层的对照口径 |
-| CACA | 脑胶质瘤诊疗指南 V2.0_2025 | 2025 | 未取得（官方平台登录墙） | 只登记其存在，推荐分级未核实，不引用条文 |
-| CSCO | CSCO 脑胶质瘤分子诊疗概要 | 2024 / 2025（具体版本号未核实） | 未取得（登录墙） | 只登记其存在，不引用条文 |
-| NCCN | NCCN Guidelines · Central Nervous System Cancers | 滚动更新（版本未核实） | 未取得原件 | 范围参照；随访节奏目前依据二手实践卡，不当作原文 |
-| WHO | Classification of Tumours of the Central Nervous System, 5th ed. | 2021 | 未取得原件 | 整合诊断与命名的口径 |
+| 国家卫健委 | 脑胶质瘤诊疗指南（2022 年版） | 2022（国卫办医函〔2022〕104 号） | [已取得 · 全文 PDF 已提取](https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml) | 手术、放疗、替莫唑胺同步 / 辅助、老年 KPS 分层、复发后选项的原文依据 |
+| CACA | 脑胶质瘤诊疗指南（2022 精简版） | 2022（中国肿瘤临床 49(16):811-818） | [未取得原件 · 期刊页 403，据二次来源](https://www.medsci.cn/guideline/show_article.do?id=2379e1c003e9a140) | 中文规范层的对照口径（本地存档已核数，公开原件不可验证） |
+| CACA | 脑胶质瘤诊疗指南 V2.0_2025 | V2.0_2025（20250110；平台记为 2024-12-20） | [未取得原件 · 平台页需登录下载](https://cacaguidelines.cacakp.com/pdflist/detail?id=415) | 只登记其存在与版本号，推荐分级未核实，不引用条文 |
+| CSCO | CSCO 脑胶质瘤诊疗指南 | 2024 / 2025（具体版本号仍未核实） | 未取得原件 · 官网无公开文件页，检索仅见会议报道 | 只登记其存在，不引用条文 |
+| NCCN | NCCN Guidelines · Central Nervous System Cancers | V3.2026（2026-10-27 官网核到版本号） | [未取得原件 · PDF 需注册](https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1425) | 范围参照；随访节奏目前依据二手实践卡，不当作原文 |
+| WHO | Classification of Tumours of the Central Nervous System, 5th ed. | 2021（IARC 出版，第 6 卷） | [未取得原件 · IARC 书目页](https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021) | 整合诊断与命名的口径 |
 
 - 一台一表，不合并。
 - **未取得原件的均已在表内标出**，只写「存在、大致讲什么」，不引用具体条文。
@@ -55,7 +55,7 @@
 ### 3.2 老年 / KPS 分层情形
 
 - 据国家卫健委 2022 版原文：>70 岁、KPS≥60 者，短程或常规放疗联合替莫唑胺被列出；KPS<60 者，短程放疗或替莫唑胺单药被列出。
-- NCCN 2021 对 KPS≥60 的老年患者另列电场治疗；本条来自二手转述，原文未取得。
+- NCCN 对 KPS≥60 的老年患者另列电场治疗；本条转述自二手资料，原件未取得。
 
 ### 3.3 复发后
 
@@ -71,7 +71,7 @@
 
 > 以上是文献与指南里列出的手段，按病期与线序排列，不代表任何一项适合你。选哪一个，这一句需要问你的医生。
 
-**来源**：国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · 原件已取得 · 页码待核 ｜ NCCN · NCCN Guidelines · Central Nervous System Cancers · 滚动更新（未核实）· 未取得原件，据二次来源 · 页码待核
+**来源**：国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · [原件已取得 · 打开/下载 ↗](https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml) · 页码待核 ｜ NCCN · NCCN Guidelines · Central Nervous System Cancers · V3.2026（2026-10-27 核） · [未取得原件，据二次来源 ↗](https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1425) · 页码待核
 
 ## 4 发展趋势（`trend`）
 
@@ -85,7 +85,7 @@
 
 **禁止**：展望、预测、推荐、优劣比较、上市时间猜测、疗效数字对比。
 
-**来源**：WHO · Classification of Tumours of the Central Nervous System, 5th ed. · 2021 · 未取得原件，据二次来源 · 页码待核 ｜ 国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · 原件已取得 · 页码待核 ｜ CACA · 脑胶质瘤诊疗指南（2022 精简版 / V2.0_2025）· 2022 / 2025 · 未取得原件，据二次来源 · 页码待核 ｜ CSCO · CSCO 脑胶质瘤分子诊疗概要 · 2024 / 2025（未核实）· 未取得原件，据二次来源 · 页码待核
+**来源**：WHO · Classification of Tumours of the Central Nervous System, 5th ed. · 2021 · [未取得原件，据二次来源 ↗](https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021) · 页码待核 ｜ 国家卫健委 · 脑胶质瘤诊疗指南（2022 年版）· 2022 · [原件已取得 · 打开/下载 ↗](https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml) · 页码待核 ｜ CACA · 脑胶质瘤诊疗指南（2022 精简版 / V2.0_2025）· 2022 / 2025 · [未取得原件，据二次来源 ↗](https://cacaguidelines.cacakp.com/pdflist/detail?id=415) · 页码待核（2022 精简版期刊页 403，二次来源另见 MedSci；V2.0_2025 本台未取得） ｜ CSCO · CSCO 脑胶质瘤诊疗指南 · 2024 / 2025（未核实）· 未取得原件 · 未找到可达的公开文件页，不编链接
 
 ## 5 落地清单
 

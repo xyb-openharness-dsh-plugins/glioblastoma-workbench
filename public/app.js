@@ -20,7 +20,7 @@ const WB_LAYOUT = window.__WB_LAYOUT__ && window.__WB_LAYOUT__.agentPane
 
 const APP_INFO = Object.assign({
   version: '0.1.6',
-  build: '2026-10-25',
+  build: '2026-10-27',
   channel: 'beta',
   channelLabel: '开发版 · 数据仅在本机',
   brand: '小星宝 StarPal',
