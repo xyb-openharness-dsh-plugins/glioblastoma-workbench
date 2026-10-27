@@ -88,7 +88,7 @@ MRI 随访、放化疗与电场治疗、血象与症状记录整理成可核对�
 需要 Node.js 22+ 与 DSH Desktop。当前只提供**本机 tgz**（未上架市场）：
 [Release v0.1.6](https://github.com/xyb-openharness-dsh-plugins/glioblastoma-workbench/releases/tag/v0.1.6)
 的 `xyb-community-glioblastoma-workbench-0.1.6.tgz`
-（sha256 `8b24d9e8104ee537696c23a656c659b74ab9ca90638f485b275f593b0341cb09`）。
+（sha256 `6bef9f33e8256f5c18e5c707cf92dd6d43bd656f47979a3d852781da82dcf525`）。
 
 ```bash
 cd ~/Library/Application\ Support/dsh-desktop/harness/profiles/web
