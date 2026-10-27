@@ -34,15 +34,15 @@ window.DISEASE_PRIMER = {
       ],
       sources: [
         {
-          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '页码待核',
+          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '待核',
           url: 'https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml'
         },
         {
-          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.（IARC，第 6 卷）', version: '2021', original: false, page: '页码待核',
+          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.（IARC，第 6 卷）', version: '2021', original: false, page: '待核',
           secondaryUrl: 'https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021'
         },
         {
-          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版）', version: '2022', original: false, page: '页码待核',
+          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版）', version: '2022', original: false, page: '待核',
           secondaryUrl: 'https://www.medsci.cn/guideline/show_article.do?id=2379e1c003e9a140',
           note: '期刊页 DOI 403、cjco.cn 证书失效，公开层按二次来源'
         }
@@ -85,29 +85,29 @@ window.DISEASE_PRIMER = {
       ],
       sources: [
         {
-          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '页码待核',
+          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '待核',
           url: 'https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml'
         },
         {
-          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版）', version: '2022', original: false, page: '页码待核',
+          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版）', version: '2022', original: false, page: '待核',
           secondaryUrl: 'https://www.medsci.cn/guideline/show_article.do?id=2379e1c003e9a140',
           note: '期刊页 DOI 403、cjco.cn 证书失效，公开层按二次来源'
         },
         {
-          org: 'CACA', doc: '脑胶质瘤诊疗指南 V2.0_2025', version: '2025', original: false, page: '页码待核',
+          org: 'CACA', doc: '脑胶质瘤诊疗指南 V2.0_2025', version: '2025', original: false, page: '待核',
           secondaryUrl: 'https://cacaguidelines.cacakp.com/pdflist/detail?id=415',
           note: '平台页可查，下载需登录'
         },
         {
-          org: 'CSCO', doc: 'CSCO 脑胶质瘤诊疗指南', version: '2024 / 2025（未核实）', original: false, nolink: true, page: '页码待核',
+          org: 'CSCO', doc: 'CSCO 脑胶质瘤诊疗指南', version: '2024 / 2025（未核实）', original: false, nolink: true, page: '待核',
           note: '未找到可达的公开文件页，不编链接'
         },
         {
-          org: 'NCCN', doc: 'NCCN Guidelines · Central Nervous System Cancers', version: 'V3.2026（2026-10-27 核）', original: false, page: '页码待核',
+          org: 'NCCN', doc: 'NCCN Guidelines · Central Nervous System Cancers', version: 'V3.2026（2026-10-27 核）', original: false, page: '待核',
           secondaryUrl: 'https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1425'
         },
         {
-          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.', version: '2021', original: false, page: '页码待核',
+          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.', version: '2021', original: false, page: '待核',
           secondaryUrl: 'https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021'
         }
       ]
@@ -155,11 +155,11 @@ window.DISEASE_PRIMER = {
       ],
       sources: [
         {
-          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '页码待核',
+          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '待核',
           url: 'https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml'
         },
         {
-          org: 'NCCN', doc: 'NCCN Guidelines · Central Nervous System Cancers', version: 'V3.2026（2026-10-27 核）', original: false, page: '页码待核',
+          org: 'NCCN', doc: 'NCCN Guidelines · Central Nervous System Cancers', version: 'V3.2026（2026-10-27 核）', original: false, page: '待核',
           secondaryUrl: 'https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1425'
         }
       ]
@@ -178,20 +178,20 @@ window.DISEASE_PRIMER = {
       ],
       sources: [
         {
-          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.', version: '2021', original: false, page: '页码待核',
+          org: 'WHO', doc: 'Classification of Tumours of the Central Nervous System, 5th ed.', version: '2021', original: false, page: '待核',
           secondaryUrl: 'https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Central-Nervous-System-Tumours-2021'
         },
         {
-          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '页码待核',
+          org: '国家卫健委', doc: '脑胶质瘤诊疗指南（2022 年版）', version: '2022', original: true, page: '待核',
           url: 'https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930.shtml'
         },
         {
-          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版 / V2.0_2025）', version: '2022 / 2025', original: false, page: '页码待核',
+          org: 'CACA', doc: '脑胶质瘤诊疗指南（2022 精简版 / V2.0_2025）', version: '2022 / 2025', original: false, page: '待核',
           secondaryUrl: 'https://cacaguidelines.cacakp.com/pdflist/detail?id=415',
           note: '2022 精简版期刊页 403，二次来源另见 MedSci；V2.0_2025 本台未取得'
         },
         {
-          org: 'CSCO', doc: 'CSCO 脑胶质瘤诊疗指南', version: '2024 / 2025（未核实）', original: false, nolink: true, page: '页码待核',
+          org: 'CSCO', doc: 'CSCO 脑胶质瘤诊疗指南', version: '2024 / 2025（未核实）', original: false, nolink: true, page: '待核',
           note: '未找到可达的公开文件页，不编链接'
         }
       ]

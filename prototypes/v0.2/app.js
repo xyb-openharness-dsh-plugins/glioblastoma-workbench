@@ -448,6 +448,9 @@ function statusCard(p) {
   const cyc = onc.adjuvantCycles || [];
   const lastCyc = cyc[cyc.length - 1];
   const nextDate = ((onc.nextOn || '').match(/\d{4}-\d{2}-\d{2}/) || [])[0] || null;
+  /* nextOn 的写法是「2026-10-28（第 4 周期 D1，待复诊确认血象）」：
+     事项要取括号里的原文，不能把日期再抄一遍（0.1.6 截图里出现过「2026.10.28（2026-10-28）」）。 */
+  const nextWhat = ((onc.nextOn || '').match(/[（(]([^）)]*)[）)]/) || [])[1] || '';
   const nextIn = nextDate ? daysBetween(TODAY, nextDate) : null;
   const phase = String(p.stageLine || '').split('→').pop().trim();
   const summaryBtn = `<button type="button" class="text-button" ${DP_TRIGGER_ATTR} aria-haspopup="dialog" aria-controls="disease-primer" aria-label="疾病概要：定义、医学资料与指南情况、治疗全景、发展趋势">疾病概要：胶质母细胞瘤是什么？</button>`;
@@ -481,7 +484,7 @@ function statusCard(p) {
     </div>
     <p style="margin:8px 0 0;font-size:12.5px;line-height:1.7">
       <b>阶段原文</b>：${esc(phase)}　·　<b>状态</b>：${esc(status)}<br>
-      <b>下次</b>：${nextDate ? `${longDate(nextDate)}（${esc(onc.nextOn.replace(/\s*[（(].*$/, ''))}）` : '待医院排期'}
+      <b>下次</b>：${nextDate ? `${longDate(nextDate)}${nextWhat ? '（' + esc(nextWhat) + '）' : ''}` : '待医院排期'}
     </p>
     <p class="small-note" style="margin:4px 0 0">诊断原文：${esc(p.diagnosis)} · ${p.age} 岁 · 演示数据</p>
     <div class="actions" style="margin-top:12px">
