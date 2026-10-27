@@ -71,7 +71,9 @@ small{font-size:11.5px;color:var(--muted)}
 .breadcrumb span{padding:0 5px;color:#c5cdd6}
 .breadcrumb b{color:var(--ink);font-weight:600}
 .top-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto;flex-wrap:nowrap}
-#agent-toggle{font-size:12px;min-height:32px;padding:5px 12px;border-radius:20px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-2)}
+/* AI 对话 = 顶栏唯一的主行动入口，用家族橙（与 .primary 同源），别做成白底描边的普通工具按钮 */
+#agent-toggle{font-size:12px;min-height:32px;padding:5px 12px;border-radius:20px;border:1px solid var(--action);background:var(--action);color:#fff;font-weight:600}
+#agent-toggle:hover{background:var(--action-hover);border-color:var(--action-hover);color:#fff}
 #agent-toggle[aria-expanded="true"]{background:var(--brand-deep);border-color:var(--brand-deep);color:#fff;font-weight:600}
 .ver-chip{min-height:32px;padding:4px 9px;border:1px solid var(--line);border-radius:20px;background:#fff;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.2px;flex:0 0 auto}
 .ver-chip:hover{background:#f2f7fa;color:var(--ink)}

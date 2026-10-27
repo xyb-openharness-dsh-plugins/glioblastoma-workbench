@@ -16,6 +16,9 @@
   `scripts/check-primer-links.mjs`，`npm run check` 末尾追加链接断言（21/21）。
 - 验证：`probe-disease-primer.mjs`（starter 最新 P1–P9 + E0）10/10 PASS，端口 8176；
   6 条 URL 逐条 `verify-links.mjs` 真浏览器验活，5 OK / 1 nolink（CSCO）。
+- 顶栏「AI 对话」按钮改家族行动橙（`--action` #e8590c 实底 + 白字，与 `.primary` 同源），
+  hover 走 `--action-hover`；展开态仍是深品牌蓝，作为「面板已打开」的差异信号。
+  原来白底描边与设置/大字同一档，看不出它是顶栏唯一的主行动入口。
 
 ## 0.1.5（2026-10-24）· 窄宽自适应：AI 面板打开后看板被压成竖排单字
 
