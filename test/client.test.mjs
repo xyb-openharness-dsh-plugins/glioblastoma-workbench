@@ -111,10 +111,11 @@ test('原生会话挂载点始终在树上，只用 display 控制（卸载会�
     'conversation 必须无条件渲染，仅切换 display');
 });
 
-test('openAgent 在服务没给目录时自己拦下并给出可执行提示', () => {
-  assert.ok(client.includes("typeof payload?.dir === 'string'"), '必须校验 dir 类型');
-  assert.ok(client.includes('服务没有给出资料目录'), '缺目录要有明确提示，而不是把 null 传给宿主');
-  assert.ok(client.includes('ensureSession({ folder: dir })'), 'ensureSession 必须传 dir');
+test('openAgent 走 defaultWorkspace + newSession；缺目录时交给宿主提示选目录', () => {
+  assert.ok(client.includes('defaultWorkspace?.()?.workspaceId'), '必须优先取默认工作区');
+  assert.ok(client.includes('newSession(workspaceId)'), '创建必须走 newSession(workspaceId)');
+  assert.ok(!client.includes('ensureSession({'), '禁止 ensureSession({}) 兜底');
+  assert.ok(client.includes('再次点击「AI 对话」重试'), '取消/失败都要给可执行的重试提示');
 });
 
 test('宽度边界原样落地（0.25 不在 0.02 网格上，先对齐再钳位会得到 0.26）', () => {

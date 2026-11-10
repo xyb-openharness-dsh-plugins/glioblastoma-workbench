@@ -19,7 +19,7 @@ const WB_LAYOUT = window.__WB_LAYOUT__ && window.__WB_LAYOUT__.agentPane
   : { min: 25, max: 45, default: 35, step: 2, storageKey: 'gbm-starpal.agent.w' };
 
 const APP_INFO = Object.assign({
-  version: '0.1.8',
+  version: '0.1.9',
   build: '2026-10-28',
   channel: 'beta',
   channelLabel: '开发版 · 数据仅在本机',
